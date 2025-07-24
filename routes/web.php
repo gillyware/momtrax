@@ -2,10 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\StaticController;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+Route::middleware([])->controller(StaticController::class)->group(function () {
+
+    Route::get('/', 'welcome')->name('home');
+
+    Route::get('/terms', 'termsOfService')->name('terms');
+
+    Route::get('/privacy', 'privacyPolicy')->name('privacy');
+
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
