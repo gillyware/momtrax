@@ -14,7 +14,7 @@ export default function Welcome() {
                 <div className="flex w-full flex-col items-center gap-4 p-4">
                     <div className="text-center text-[32px] font-bold sm:text-[48px]">MomTrax: Built for You</div>
                     <div className="text-center text-sm">Track your mom moments with a tool that bends to your needs.</div>
-                    <div className="flex flex-col items-center justify-center gap-4 p-4 sm:flex-row sm:gap-6">
+                    <div className="flex flex-row flex-wrap items-center justify-center gap-6 p-4">
                         <Button className="rounded-md" variant="default" asChild>
                             <Link href="#features">Explore Features</Link>
                         </Button>
@@ -26,7 +26,7 @@ export default function Welcome() {
                         </Button>
                     </div>
                 </div>
-                <div className="flex w-full flex-col items-center bg-zinc-200 p-4">
+                <div className="flex w-full flex-col items-center bg-zinc-400 p-4">
                     <div className="text-center text-[32px] font-bold sm:text-[48px]">A Day in Your Life</div>
                     <div className="text-center text-sm italic">Take back your day with tools that work as hard as you do.</div>
                 </div>
