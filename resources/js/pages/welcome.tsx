@@ -1,11 +1,8 @@
 import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/app-layout';
-import { type SharedData } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function Welcome() {
-    const { auth } = usePage<SharedData>().props;
-
     return (
         <AppLayout>
             <Head title="Your Mom Life, Simplified">
@@ -18,13 +15,13 @@ export default function Welcome() {
                     <div className="text-center text-[32px] font-bold sm:text-[48px]">MomTrax: Built for You</div>
                     <div className="text-center text-sm">Track your mom moments with a tool that bends to your needs.</div>
                     <div className="flex flex-col items-center justify-center gap-4 p-4 sm:flex-row sm:gap-6">
-                        <Button clasName="rounded-md" variant="default" asChild>
+                        <Button className="rounded-md" variant="default" asChild>
                             <Link href="#features">Explore Features</Link>
                         </Button>
-                        <Button clasName="rounded-md" variant="ghost" asChild>
+                        <Button className="rounded-md" variant="ghost" asChild>
                             <Link href="#premium">Go Premium</Link>
                         </Button>
-                        <Button clasName="rounded-md" variant="secondary" asChild>
+                        <Button className="rounded-md" variant="secondary" asChild>
                             <Link href="#download">Get It Free on iOS</Link>
                         </Button>
                     </div>

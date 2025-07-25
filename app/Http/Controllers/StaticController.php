@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
-class StaticController extends Controller
+final class StaticController extends Controller
 {
     public function welcome(): InertiaResponse
     {
@@ -22,4 +24,3 @@ class StaticController extends Controller
         return Inertia::render('legal/privacy');
     }
 }
-

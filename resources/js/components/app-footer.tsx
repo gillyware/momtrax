@@ -20,7 +20,9 @@ export function AppFooter() {
     return (
         <div className="flex flex-row items-center justify-start gap-4 border-b border-sidebar-border/80 p-4">
             {footerItems.map((item) => (
-                <Link href={item.href}>{item.title}</Link>
+                <Link key={item.title} href={item.href}>
+                    {item.title}
+                </Link>
             ))}
         </div>
     );
