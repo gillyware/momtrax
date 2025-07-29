@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef2f190af4c5e4971a0f0f2484c982ae",
+    "content-hash": "543511f31611af922724cf435c73da08",
     "packages": [
         {
             "name": "brick/math",
@@ -580,6 +580,143 @@
                 }
             ],
             "time": "2023-10-12T05:21:21+00:00"
+        },
+        {
+            "name": "gillyware/gatekeeper",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gillyware/gatekeeper.git",
+                "reference": "dbb7eb720b028e40ee6bfa215f1dc5142e69ece5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gillyware/gatekeeper/zipball/dbb7eb720b028e40ee6bfa215f1dc5142e69ece5",
+                "reference": "dbb7eb720b028e40ee6bfa215f1dc5142e69ece5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "gillyware/postal": "^1.1",
+                "illuminate/contracts": "^11.0|^12.0",
+                "illuminate/database": "^11.0|^12.0",
+                "illuminate/routing": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "illuminate/view": "^11.0|^12.0",
+                "laravel/prompts": "^0.3.6",
+                "php": "^8.2",
+                "symfony/http-kernel": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.22",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^8.18|^9.0|^10.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.4|^11.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gillyware\\Gatekeeper\\GatekeeperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gillyware\\Gatekeeper\\": "src/",
+                    "Gillyware\\Gatekeeper\\Database\\Seeders\\": "database/seeders/",
+                    "Gillyware\\Gatekeeper\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bradley Johnson",
+                    "email": "braxey@gillyware.com"
+                }
+            ],
+            "description": "Gatekeeper provides an expressive, fluent interface for access control.",
+            "keywords": [
+                "Teams",
+                "access control",
+                "authorization",
+                "laravel",
+                "permissions",
+                "roles"
+            ],
+            "support": {
+                "issues": "https://github.com/gillyware/gatekeeper/issues",
+                "source": "https://github.com/gillyware/gatekeeper/tree/v1.1.0"
+            },
+            "time": "2025-07-27T13:31:41+00:00"
+        },
+        {
+            "name": "gillyware/postal",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gillyware/postal.git",
+                "reference": "9af770ad6fd45f52452093d1bf7c02eae4a232cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gillyware/postal/zipball/9af770ad6fd45f52452093d1bf7c02eae4a232cb",
+                "reference": "9af770ad6fd45f52452093d1bf7c02eae4a232cb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/contracts": "^11.0|^12.0",
+                "illuminate/http": "^11.0|^12.0",
+                "illuminate/routing": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.22",
+                "orchestra/testbench": "^8.18|^9.0|^10.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.4|^11.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gillyware\\Postal\\Providers\\PostalServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gillyware\\Postal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bradley Johnson",
+                    "email": "braxey@gillyware.com"
+                }
+            ],
+            "description": "Courier‑style DTOs (Packets) for Laravel applications",
+            "keywords": [
+                "Data Transfer Object",
+                "dto",
+                "laravel",
+                "packet"
+            ],
+            "support": {
+                "issues": "https://github.com/gillyware/postal/issues",
+                "source": "https://github.com/gillyware/postal/tree/v1.1.2"
+            },
+            "time": "2025-07-24T02:45:59+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -7038,16 +7175,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.19",
+            "version": "2.1.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "473a8c30e450d87099f76313edcbb90852f9afdf"
+                "reference": "a9ccfef95210f92ba6feea6e8d1eef42b5605499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/473a8c30e450d87099f76313edcbb90852f9afdf",
-                "reference": "473a8c30e450d87099f76313edcbb90852f9afdf",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a9ccfef95210f92ba6feea6e8d1eef42b5605499",
+                "reference": "a9ccfef95210f92ba6feea6e8d1eef42b5605499",
                 "shasum": ""
             },
             "require": {
@@ -7092,7 +7229,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-21T19:58:24+00:00"
+            "time": "2025-07-26T20:45:26+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
