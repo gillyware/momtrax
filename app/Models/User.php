@@ -15,8 +15,8 @@ final class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
-    use HasPermissions;
     use HasFeatures;
+    use HasPermissions;
     use Notifiable;
 
     protected $fillable = [

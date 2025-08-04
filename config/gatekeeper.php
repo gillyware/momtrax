@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -109,7 +111,7 @@ return [
 
             'user' => [
                 'label' => 'User',
-                'class' => \App\Models\User::class,
+                'class' => App\Models\User::class,
                 'searchable' => [
                     ['column' => 'id', 'label' => 'ID'],
                     ['column' => 'name', 'label' => 'name'],
@@ -124,7 +126,7 @@ return [
 
             'feature' => [
                 'label' => 'Feature',
-                'class' => \Gillyware\Gatekeeper\Models\Feature::class,
+                'class' => Gillyware\Gatekeeper\Models\Feature::class,
                 'searchable' => [
                     ['column' => 'name', 'label' => 'name'],
                 ],
