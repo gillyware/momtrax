@@ -118,7 +118,7 @@ export default function Welcome() {
                 </div>
                 <div id="download" className="flex w-full flex-col items-center gap-6 px-4 pt-6 pb-9">
                     <div className="text-center text-[32px] font-bold sm:text-[40px]">{landingText.download.title}</div>
-                    <a href="https://apps.apple.com/us/app/momtrax/id6741926859" target="_blank">
+                    <a className="active:scale-95" href="https://apps.apple.com/us/app/momtrax/id6741926859" target="_blank">
                         <img src={image('app-store-badge')} alt={landingText.download.buttonAlt} className="w-[160px]" />
                     </a>
                 </div>
