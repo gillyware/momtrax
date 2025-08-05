@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\StaticController;
 
-Route::middleware([])->controller(StaticController::class)->group(function () {
+Route::controller(StaticController::class)->group(function () {
 
     Route::get('/', 'welcome')->name('home');
 

@@ -1,13 +1,13 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/react-starter-kit",
+    "name": "gillyware/momtrax",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Baby tracking app for pumping, feeding, sleeping, and growth.",
     "keywords": [
         "laravel",
         "framework"
     ],
-    "license": "MIT",
+    "license": "proprietary",
     "require": {
         "php": "^8.2",
         "gillyware/gatekeeper": "^2.1",
