@@ -71,36 +71,36 @@ export default function Welcome() {
         <AppLayout>
             <Head title={landingText.title} />
             <div className="flex w-full grow flex-col items-center">
-                <div className="flex w-full flex-col items-center gap-4 bg-muted p-4">
+                <div className="flex w-full flex-col items-center gap-4 bg-secondary p-4">
                     <div className="text-center text-[32px] font-bold sm:text-[40px]">{landingText.buttonContainer.appName}</div>
                     <div className="text-md text-center">{landingText.buttonContainer.subHeader}</div>
                     <div className="flex flex-row flex-wrap items-center justify-center gap-6 p-4">
                         <Button className="rounded-md" variant="default" asChild>
                             <Link href="#features">{landingText.buttonContainer.exploreFeatures}</Link>
                         </Button>
-                        <Button className="rounded-md" variant="ghost" asChild>
+                        <Button className="rounded-md" variant="outline" asChild>
                             <Link href="#premium">{landingText.buttonContainer.goPremium}</Link>
                         </Button>
-                        <Button className="rounded-md" variant="secondary" asChild>
+                        <Button className="rounded-md" variant="tertiary" asChild>
                             <Link href="#download">{landingText.buttonContainer.download}</Link>
                         </Button>
                     </div>
                 </div>
-                <div id="features" className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:max-w-4xl lg:grid-cols-3">
+                <div id="features" className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:max-w-5xl xl:grid-cols-3">
                     {tiles.map((tile: Tile) => (
-                        <FeatureCard tile={tile} />
+                        <FeatureCard key={tile.title} tile={tile} />
                     ))}
                     {premiumTiles.map((tile: Tile) => (
-                        <FeatureCard tile={tile} isPremium />
+                        <FeatureCard key={tile.title} tile={tile} isPremium />
                     ))}
                 </div>
-                <div className="flex w-full items-center justify-center p-6 md:max-w-4xl">
+                <div className="flex w-full items-center justify-center p-6 md:max-w-5xl">
                     <div className="flex w-full flex-col items-center justify-center gap-4 rounded-lg border bg-primary p-4 text-primary-foreground">
                         <div className="text-lg">{landingText.features.personalize.header}</div>
                         <div className="text-md">{landingText.features.personalize.subHeader}</div>
                     </div>
                 </div>
-                <div id="premium" className="flex w-full flex-col items-center justify-center gap-6 bg-muted px-6 pt-6 pb-15">
+                <div id="premium" className="flex w-full flex-col items-center justify-center gap-6 bg-secondary px-6 pt-6 pb-15">
                     <div className="text-center text-[32px] font-bold sm:text-[40px]">{landingText.premium.header}</div>
                     <div className="text-md text-center">{landingText.premium.subHeader}</div>
                     <Card className="flex flex-col transition-shadow hover:shadow-md">
@@ -122,7 +122,7 @@ export default function Welcome() {
                         <img src={image('app-store-badge')} alt={landingText.download.buttonAlt} className="w-[160px]" />
                     </a>
                 </div>
-                <div className="flex w-full flex-col items-center gap-6 bg-muted p-6">
+                <div className="flex w-full flex-col items-center gap-6 bg-secondary p-6">
                     <div className="text-center text-[32px] font-bold sm:text-[40px]">{landingText.contact.title}</div>
                     <div className="text-md text-center">
                         {landingText.contact.message.split('{email}').map((part, i) => (

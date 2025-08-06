@@ -6,24 +6,20 @@ interface FooterItem {
 }
 
 const footerItems: FooterItem[] = [
-    {
-        title: 'Terms of Service',
-        href: '/terms',
-    },
-    {
-        title: 'Privacy',
-        href: '/privacy',
-    },
+    { title: 'Terms of Service', href: '/terms' },
+    { title: 'Privacy', href: '/privacy' },
 ];
 
 export function AppFooter() {
     return (
-        <div className="flex flex-row items-center justify-start gap-4 border-b border-sidebar-border/80 p-4">
-            {footerItems.map((item) => (
-                <Link key={item.title} href={item.href}>
-                    {item.title}
-                </Link>
-            ))}
+        <div className="flex w-full flex-row justify-center">
+            <div className="flex grow flex-row items-center justify-center gap-4 border-b border-sidebar-border/80 p-4 sm:justify-start md:max-w-7xl">
+                {footerItems.map((item) => (
+                    <Link className="hover:underline active:scale-95" key={item.title} href={item.href}>
+                        {item.title}
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 }

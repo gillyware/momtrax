@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export type Appearance = 'light' | 'dark' | 'system';
+export type Appearance = 'light' | 'dark' | 'system' | 'theme-green' | 'theme-purple' | 'theme-orange' | 'theme-blue' | 'theme-mauve';
 
 const prefersDark = () => {
     if (typeof window === 'undefined') {
@@ -20,35 +20,29 @@ const setCookie = (name: string, value: string, days = 365) => {
 };
 
 const applyTheme = (appearance: Appearance) => {
-    const isDark = appearance === 'dark' || (appearance === 'system' && prefersDark());
-
-    document.documentElement.classList.toggle('dark', isDark);
-};
-
-const mediaQuery = () => {
-    if (typeof window === 'undefined') {
-        return null;
+    if (appearance === 'system') {
+        appearance = prefersDark() ? 'dark' : 'light';
     }
 
-    return window.matchMedia('(prefers-color-scheme: dark)');
-};
+    const classList = document.documentElement.classList;
 
-const handleSystemThemeChange = () => {
-    const currentAppearance = localStorage.getItem('appearance') as Appearance;
-    applyTheme(currentAppearance || 'system');
+    for (const cls of Array.from(classList)) {
+        if (cls === 'light' || cls === 'dark' || cls === 'system' || cls.startsWith('theme-')) {
+            classList.remove(cls);
+        }
+    }
+
+    classList.add(appearance);
 };
 
 export function initializeTheme() {
-    const savedAppearance = (localStorage.getItem('appearance') as Appearance) || 'system';
+    const savedAppearance = (localStorage.getItem('appearance') as Appearance) || 'theme-mauve';
 
     applyTheme(savedAppearance);
-
-    // Add the event listener for system theme changes...
-    mediaQuery()?.addEventListener('change', handleSystemThemeChange);
 }
 
 export function useAppearance() {
-    const [appearance, setAppearance] = useState<Appearance>('system');
+    const [appearance, setAppearance] = useState<Appearance>('theme-mauve');
 
     const updateAppearance = useCallback((mode: Appearance) => {
         setAppearance(mode);
@@ -64,9 +58,7 @@ export function useAppearance() {
 
     useEffect(() => {
         const savedAppearance = localStorage.getItem('appearance') as Appearance | null;
-        updateAppearance(savedAppearance || 'system');
-
-        return () => mediaQuery()?.removeEventListener('change', handleSystemThemeChange);
+        updateAppearance(savedAppearance || 'theme-mauve');
     }, [updateAppearance]);
 
     return { appearance, updateAppearance } as const;
