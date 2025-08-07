@@ -17,12 +17,9 @@ final class ProfileController extends Controller
     /**
      * Show the user's profile settings page.
      */
-    public function edit(Request $request): Response
+    public function edit(): Response
     {
-        return Inertia::render('settings/profile', [
-            'mustVerifyEmail' => false,
-            'status' => $request->session()->get('status'),
-        ]);
+        return Inertia::render('settings/profile');
     }
 
     /**
@@ -30,13 +27,9 @@ final class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
+        user()->save();
 
         return to_route('profile.edit');
     }
@@ -50,7 +43,7 @@ final class ProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        $user = user();
 
         Auth::logout();
 

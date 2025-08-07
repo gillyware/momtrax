@@ -13,7 +13,7 @@ const footerItems: FooterItem[] = [
 export function AppFooter() {
     return (
         <div className="flex w-full flex-row justify-center">
-            <div className="flex grow flex-row items-center justify-center gap-4 border-b border-sidebar-border/80 p-4 sm:justify-start md:max-w-7xl">
+            <div className="flex grow flex-row items-center justify-center gap-4 border-t border-sidebar-border/80 p-4 sm:justify-start md:max-w-7xl">
                 {footerItems.map((item) => (
                     <Link className="hover:underline active:scale-95" key={item.title} href={item.href}>
                         {item.title}
