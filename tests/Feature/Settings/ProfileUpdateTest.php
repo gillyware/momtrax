@@ -22,7 +22,9 @@ test('profile information can be updated', function () {
     $response = $this
         ->actingAs($user)
         ->patch('/settings/profile', [
-            'name' => 'Test User',
+            'first_name' => 'Test',
+            'last_name' => 'User',
+            'nickname' => 'Tester',
             'email' => 'test@example.com',
         ]);
 
@@ -32,7 +34,9 @@ test('profile information can be updated', function () {
 
     $user->refresh();
 
-    expect($user->name)->toBe('Test User');
+    expect($user->first_name)->toBe('Test');
+    expect($user->last_name)->toBe('User');
+    expect($user->nickname)->toBe('Tester');
     expect($user->email)->toBe('test@example.com');
 });
 

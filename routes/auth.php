@@ -21,7 +21,7 @@ Route::middleware('guest')->group(function () {
 
         Route::get('/register', 'create')->name('register');
 
-        Route::post('/register', 'store');
+        Route::post('/register', 'store')->middleware('throttle:6,1');
 
     });
 

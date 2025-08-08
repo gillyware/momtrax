@@ -18,11 +18,11 @@ final class AuthenticatedSessionController extends Controller
     /**
      * Show the login page.
      */
-    public function create(Request $request): Response
+    public function create(): Response
     {
         return Inertia::render('auth/login', [
             'canResetPassword' => Route::has('password.request'),
-            'status' => $request->session()->get('status'),
+            'status' => session()->get('status'),
         ]);
     }
 
@@ -33,7 +33,7 @@ final class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
@@ -41,13 +41,13 @@ final class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(): RedirectResponse
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        session()->invalidate();
+        session()->regenerateToken();
 
-        return redirect('/');
+        return to_route('home');
     }
 }

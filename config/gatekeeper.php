@@ -114,12 +114,14 @@ return [
                 'class' => App\Models\User::class,
                 'searchable' => [
                     ['column' => 'id', 'label' => 'ID'],
-                    ['column' => 'name', 'label' => 'name'],
+                    ['column' => 'first_name', 'label' => 'first name'],
+                    ['column' => 'last_name', 'label' => 'last name'],
+                    ['column' => 'nickname', 'label' => 'nickname'],
                     ['column' => 'email', 'label' => 'email'],
                 ],
                 'displayable' => [
                     ['column' => 'id', 'label' => 'ID', 'cli_width' => 10],
-                    ['column' => 'name', 'label' => 'Name', 'cli_width' => 25],
+                    ['column' => 'nickname', 'label' => 'Nickname', 'cli_width' => 25],
                     ['column' => 'email', 'label' => 'Email', 'cli_width' => 35],
                 ],
             ],

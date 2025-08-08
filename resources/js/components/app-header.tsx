@@ -37,8 +37,8 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
     return (
         <>
-            <div className="border-b border-sidebar-border/80">
-                <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
+            <div>
+                <div className="mx-auto flex h-16 items-center border-b border-sidebar-border/80 px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
                         <Sheet>
@@ -110,9 +110,9 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                 <DropdownMenuTrigger asChild>
                                     <Button variant="ghost" className="size-10 rounded-full p-1">
                                         <Avatar className="size-8 overflow-hidden rounded-full">
-                                            <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
+                                            <AvatarImage src={auth.user.avatar} alt={auth.user.nickname} />
                                             <AvatarFallback className="rounded-lg bg-secondary text-primary">
-                                                {getInitials(auth.user.name)}
+                                                {getInitials(auth.user.nickname)}
                                             </AvatarFallback>
                                         </Avatar>
                                     </Button>

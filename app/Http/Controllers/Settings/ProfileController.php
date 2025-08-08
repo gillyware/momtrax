@@ -27,9 +27,7 @@ final class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        user()->fill($request->validated());
-
-        user()->save();
+        user()->update($request->validated());
 
         return to_route('profile.edit');
     }
@@ -49,9 +47,9 @@ final class ProfileController extends Controller
 
         $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        session()->invalidate();
+        session()->regenerateToken();
 
-        return redirect('/');
+        return to_route('home');
     }
 }
