@@ -1,8 +1,3 @@
-import { type BreadcrumbItem, type SharedData } from '@/types';
-import { Transition } from '@headlessui/react';
-import { Head, useForm, usePage } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
-
 import DeleteUser from '@/components/delete-user';
 import HeadingSmall from '@/components/heading-small';
 import InputError from '@/components/input-error';
@@ -11,6 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import { User, type BreadcrumbItem, type SharedData } from '@/types';
+import { Transition } from '@headlessui/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -28,12 +27,13 @@ type ProfileForm = {
 
 export default function Profile() {
     const { auth } = usePage<SharedData>().props;
+    const user = auth.user as User;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
-        first_name: auth.user.first_name,
-        last_name: auth.user.last_name,
-        nickname: auth.user.nickname,
-        email: auth.user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        nickname: user.nickname,
+        email: user.email,
     });
 
     const submit: FormEventHandler = (e) => {

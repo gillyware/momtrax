@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
+use App\Packets\Users\UpdateUserProfilePacket;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +16,8 @@ use Inertia\Response;
 
 final class ProfileController extends Controller
 {
+    public function __construct(private readonly UserService $userService) {}
+
     /**
      * Show the user's profile settings page.
      */
@@ -27,7 +31,7 @@ final class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        user()->update($request->validated());
+        $this->userService->updateProfile(user(), UpdateUserProfilePacket::from($request));
 
         return to_route('profile.edit');
     }
@@ -45,7 +49,9 @@ final class ProfileController extends Controller
 
         Auth::logout();
 
-        $user->delete();
+        if (! $this->userService->destroy($user)) {
+            return back();
+        }
 
         session()->invalidate();
         session()->regenerateToken();

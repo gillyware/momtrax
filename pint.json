@@ -1,5 +1,5 @@
 {
-  "preset": "psr12",
+  "preset": "laravel",
   "rules": {
         "no_unused_imports": true,
         "simplified_null_return": true,

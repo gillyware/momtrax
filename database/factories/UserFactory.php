@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\UserSetting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory<User>
  */
 final class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
     protected static ?string $password;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
@@ -35,5 +29,21 @@ final class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'timezone' => fake()->timezone(),
         ];
+    }
+
+    public function configure(): self
+    {
+        return $this->afterCreating(function (User $user) {
+            UserSetting::factory()->create([
+                'user_id' => $user->id,
+            ]);
+        });
+    }
+
+    public function withoutSettings(): self
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->settings()->delete();
+        });
     }
 }

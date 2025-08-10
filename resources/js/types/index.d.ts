@@ -1,8 +1,10 @@
+import { Appearance } from '@/hooks/use-appearance';
+import { HeightUnit, MilkUnit, WeightUnit } from '@/types/enums';
 import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {
-    user: User;
+    user: User | null;
 }
 
 export interface BreadcrumbItem {
@@ -39,6 +41,19 @@ export interface User {
     nickname: string;
     email: string;
     avatar?: string;
+    created_at: string;
+    updated_at: string;
+    settings: UserSetting;
+    [key: string]: unknown;
+}
+
+export interface UserSetting {
+    id: number;
+    user_id: int;
+    milk_unit: MilkUnit;
+    height_unit: HeightUnit;
+    weight_unit: WeightUnit;
+    appearance: Appearance;
     created_at: string;
     updated_at: string;
     [key: string]: unknown;

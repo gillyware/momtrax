@@ -1,4 +1,7 @@
-import AppLayoutTemplate from '@/layouts/app/app-header-layout';
+import { AppContent } from '@/components/app-content';
+import { AppFooter } from '@/components/app-footer';
+import { AppHeader } from '@/components/app-header';
+import { AppShell } from '@/components/app-shell';
 import { type BreadcrumbItem } from '@/types';
 import { type ReactNode } from 'react';
 
@@ -7,8 +10,10 @@ interface AppLayoutProps {
     breadcrumbs?: BreadcrumbItem[];
 }
 
-export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
-    <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
-        {children}
-    </AppLayoutTemplate>
+export default ({ children, breadcrumbs }: AppLayoutProps) => (
+    <AppShell>
+        <AppHeader breadcrumbs={breadcrumbs} />
+        <AppContent>{children}</AppContent>
+        <AppFooter />
+    </AppShell>
 );

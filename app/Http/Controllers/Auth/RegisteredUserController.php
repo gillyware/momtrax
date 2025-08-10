@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Packets\Users\StoreUserPacket;
+use App\Services\UserService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
 final class RegisteredUserController extends Controller
 {
+    public function __construct(private readonly UserService $userService) {}
+
     /**
      * Show the registration page.
      */
@@ -28,28 +29,11 @@ final class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserPacket $storeUserPacket): RedirectResponse
     {
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'nickname' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'timezone' => 'required|timezone',
-        ]);
-
-        $user = User::create([
-            'uuid' => uuidv4(),
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'nickname' => $request->nickname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'timezone' => $request->timezone,
-        ]);
+        $user = $this->userService->create($storeUserPacket);
 
         event(new Registered($user));
 

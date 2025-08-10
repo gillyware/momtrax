@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Settings\UnitPreferencesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,7 +15,6 @@ Route::middleware('auth')->group(function () {
      * Profile
      * **********************************************************************************
      */
-
     Route::redirect('/settings', '/settings/profile');
 
     Route::controller(ProfileController::class)->group(function () {
@@ -29,15 +29,14 @@ Route::middleware('auth')->group(function () {
 
     /**
      * **********************************************************************************
-     * Password
+     * Unit Preferences
      * **********************************************************************************
      */
+    Route::controller(UnitPreferencesController::class)->group(function () {
 
-    Route::controller(PasswordController::class)->group(function () {
+        Route::get('/settings/units', 'edit')->name('units.edit');
 
-        Route::get('/settings/password', 'edit')->name('password.edit');
-
-        Route::put('/settings/password', 'update')->name('password.update');
+        Route::patch('/settings/units', 'update')->name('units.update');
 
     });
 
@@ -46,8 +45,20 @@ Route::middleware('auth')->group(function () {
      * Appearance
      * **********************************************************************************
      */
-
     Route::get('/settings/appearance', fn () => Inertia::render('settings/appearance'))
         ->name('appearance');
+
+    /**
+     * **********************************************************************************
+     * Password
+     * **********************************************************************************
+     */
+    Route::controller(PasswordController::class)->group(function () {
+
+        Route::get('/settings/password', 'edit')->name('password.edit');
+
+        Route::put('/settings/password', 'update')->name('password.update');
+
+    });
 
 });
