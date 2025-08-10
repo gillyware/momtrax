@@ -8,6 +8,8 @@ use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;
 use App\Models\User;
 use App\Models\UserSetting;
+use App\Packets\UserSettings\StoreUserSettingPacket;
+use App\Packets\UserSettings\UpdateLocalizationPacket;
 use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
 use App\Repositories\UserSettingRepository;
 
@@ -21,12 +23,17 @@ beforeEach(function () {
 test('create() persists user settings', function () {
     $user = User::factory()->withoutSettings()->create();
 
-    $settings = $this->userSettingRepository->createForUser($user);
+    $packet = StoreUserSettingPacket::from([
+        'timezone' => $timezone = fake()->timezone(),
+    ]);
+
+    $settings = $this->userSettingRepository->createForUser($user, $packet);
 
     assertModelExists($settings);
 
     assertDatabaseHas((new UserSetting)->getTable(), [
         'user_id' => $user->id,
+        'timezone' => $timezone,
     ]);
 
     expect($settings->milk_unit)->toBeIn(MilkUnit::all())
@@ -35,7 +42,7 @@ test('create() persists user settings', function () {
         ->and($settings->appearance)->toBeIn(Appearance::all());
 });
 
-test('updateUnitPreferences() updates user unit preferences', function () {
+test('update() updates user unit preferences', function () {
     $user = User::factory()->create();
 
     [$newMilkUnit, $newHeightUnit, $newWeightUnit] = [MilkUnit::random(), HeightUnit::random(), WeightUnit::random()];
@@ -46,9 +53,23 @@ test('updateUnitPreferences() updates user unit preferences', function () {
         'weight_unit' => $newWeightUnit->value,
     ]);
 
-    $settings = $this->userSettingRepository->updateUnitPreferences($user->settings, $packet);
+    $settings = $this->userSettingRepository->update($user->settings, $packet);
 
     expect($settings->milk_unit)->toBe($newMilkUnit)
         ->and($settings->height_unit)->toBe($newHeightUnit)
         ->and($settings->weight_unit)->toBe($newWeightUnit);
+});
+
+test('update() updates user localization', function () {
+    $user = User::factory()->create();
+
+    $timezone = 'America/New_York';
+
+    $packet = UpdateLocalizationPacket::from([
+        'timezone' => $timezone,
+    ]);
+
+    $settings = $this->userSettingRepository->update($user->settings, $packet);
+
+    expect($settings->timezone)->toBe($timezone);
 });

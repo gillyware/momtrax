@@ -37,6 +37,7 @@ final class UserSetting extends Model
         'height_unit',
         'weight_unit',
         'appearance',
+        'timezone',
     ];
 
     public function user(): BelongsTo

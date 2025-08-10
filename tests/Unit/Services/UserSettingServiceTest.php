@@ -6,6 +6,7 @@ use App\Enums\HeightUnit;
 use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;
 use App\Models\User;
+use App\Packets\UserSettings\UpdateLocalizationPacket;
 use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
 use App\Services\UserSettingService;
 
@@ -24,9 +25,23 @@ test('updateUnitPreferences() updates user unit preferences', function () {
         'weight_unit' => $newWeightUnit->value,
     ]);
 
-    $settings = $this->userSettingService->updateUnitPreferences($user->settings, $packet);
+    $settings = $this->userSettingService->update($user->settings, $packet);
 
     expect($settings->milk_unit)->toBe($newMilkUnit)
         ->and($settings->height_unit)->toBe($newHeightUnit)
         ->and($settings->weight_unit)->toBe($newWeightUnit);
+});
+
+test('update() updates user localization', function () {
+    $user = User::factory()->create();
+
+    $timezone = 'America/New_York';
+
+    $packet = UpdateLocalizationPacket::from([
+        'timezone' => $timezone,
+    ]);
+
+    $settings = $this->userSettingService->update($user->settings, $packet);
+
+    expect($settings->timezone)->toBe($timezone);
 });

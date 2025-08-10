@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\UserSetting;
-use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
+use App\Packets\UserSettings\UpdateUserSettingPacket;
 use App\Repositories\UserSettingRepository;
 use Illuminate\Container\Attributes\Singleton;
 
@@ -14,8 +14,8 @@ final class UserSettingService
 {
     public function __construct(private readonly UserSettingRepository $userSettingRepository) {}
 
-    public function updateUnitPreferences(UserSetting $user, UpdateUnitPreferencesPacket $updateUnitPreferencesPacket): UserSetting
+    public function update(UserSetting $settings, UpdateUserSettingPacket $updateSettingsPacket): UserSetting
     {
-        return $this->userSettingRepository->updateUnitPreferences($user, $updateUnitPreferencesPacket);
+        return $this->userSettingRepository->update($settings, $updateSettingsPacket);
     }
 }

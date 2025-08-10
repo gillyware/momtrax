@@ -10,6 +10,7 @@
     "license": "proprietary",
     "require": {
         "php": "^8.2",
+        "gillyware/atlas": "^0.0.1",
         "gillyware/gatekeeper": "^2.1",
         "gillyware/postal": "^1.1",
         "inertiajs/inertia-laravel": "^2.0",

@@ -24,6 +24,7 @@ final class UserSettingFactory extends Factory
             'height_unit' => HeightUnit::random(),
             'weight_unit' => WeightUnit::random(),
             'appearance' => Appearance::random(),
+            'timezone' => fake()->timezone(),
         ];
     }
 }

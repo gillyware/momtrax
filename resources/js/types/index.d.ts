@@ -54,6 +54,7 @@ export interface UserSetting {
     height_unit: HeightUnit;
     weight_unit: WeightUnit;
     appearance: Appearance;
+    timezone: string;
     created_at: string;
     updated_at: string;
     [key: string]: unknown;

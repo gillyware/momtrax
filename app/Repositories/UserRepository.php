@@ -7,7 +7,9 @@ namespace App\Repositories;
 use App\Models\User;
 use App\Packets\Users\StoreUserPacket;
 use App\Packets\Users\UpdateUserProfilePacket;
+use App\Packets\UserSettings\StoreUserSettingPacket;
 use Illuminate\Container\Attributes\Singleton;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,12 +21,17 @@ final class UserRepository
     public function create(StoreUserPacket $storeUserPacket): User
     {
         return DB::transaction(function () use ($storeUserPacket) {
-            $user = User::create(array_merge($storeUserPacket->toArray(), [
+            $userData = $storeUserPacket->toArray();
+            $timezone = Arr::pull($userData, 'timezone');
+
+            $user = User::create(array_merge($userData, [
                 'uuid' => uuidv4(),
                 'password' => Hash::make($storeUserPacket->password),
             ]));
 
-            $this->userSettingRepository->createForUser($user);
+            $this->userSettingRepository->createForUser($user, StoreUserSettingPacket::from([
+                'timezone' => $timezone,
+            ]));
 
             return $user->refresh();
         });

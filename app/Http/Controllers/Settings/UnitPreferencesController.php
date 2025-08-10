@@ -28,7 +28,7 @@ final class UnitPreferencesController extends Controller
      */
     public function update(UpdateUnitPreferencesPacket $updateUnitPreferencesPacket): RedirectResponse
     {
-        $this->userSettingService->updateUnitPreferences(user()->settings, $updateUnitPreferencesPacket);
+        $this->userSettingService->update(user()->settings, $updateUnitPreferencesPacket);
 
         return to_route('units.edit');
     }

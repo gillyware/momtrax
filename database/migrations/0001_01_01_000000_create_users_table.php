@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('nickname');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('timezone')->default('America/New_York');
             $table->string('pfp_extension')->nullable();
             $table->rememberToken();
             $table->timestamps();

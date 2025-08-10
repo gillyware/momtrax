@@ -27,7 +27,6 @@ final class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'password' => self::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'timezone' => fake()->timezone(),
         ];
     }
 

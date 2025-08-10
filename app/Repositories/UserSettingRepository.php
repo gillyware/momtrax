@@ -6,24 +6,25 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Models\UserSetting;
-use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
+use App\Packets\UserSettings\StoreUserSettingPacket;
+use App\Packets\UserSettings\UpdateUserSettingPacket;
 use Illuminate\Container\Attributes\Singleton;
 
 #[Singleton]
 final class UserSettingRepository
 {
-    public function createForUser(User $user): UserSetting
+    public function createForUser(User $user, StoreUserSettingPacket $storeUserSettingPacket): UserSetting
     {
-        $settings = UserSetting::create([
+        $settings = UserSetting::create(array_merge($storeUserSettingPacket->toArray(), [
             'user_id' => $user->id,
-        ]);
+        ]));
 
         return $settings->refresh();
     }
 
-    public function updateUnitPreferences(UserSetting $settings, UpdateUnitPreferencesPacket $updateUnitPreferencesPacket): UserSetting
+    public function update(UserSetting $settings, UpdateUserSettingPacket $updateSettingsPacket): UserSetting
     {
-        $settings->update($updateUnitPreferencesPacket->toArray());
+        $settings->update($updateSettingsPacket->toArray());
 
         return $settings->refresh();
     }

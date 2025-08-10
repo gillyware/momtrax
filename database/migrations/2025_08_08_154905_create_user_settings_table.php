@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('weight_unit', 5)->default(WeightUnit::Pounds->value);
             $table->string('height_unit', 5)->default(HeightUnit::Inches->value);
             $table->string('appearance', 15)->default(Appearance::Mauve->value);
+            $table->string('timezone')->default('America/New_York');
 
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Settings\LocalizationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\UnitPreferencesController;
@@ -37,6 +38,19 @@ Route::middleware('auth')->group(function () {
         Route::get('/settings/units', 'edit')->name('units.edit');
 
         Route::patch('/settings/units', 'update')->name('units.update');
+
+    });
+
+    /**
+     * **********************************************************************************
+     * Localization
+     * **********************************************************************************
+     */
+    Route::controller(LocalizationController::class)->group(function () {
+
+        Route::get('/settings/localization', 'edit')->name('localization.edit');
+
+        Route::patch('/settings/localization', 'update')->name('localization.update');
 
     });
 

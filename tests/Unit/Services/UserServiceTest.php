@@ -27,7 +27,7 @@ test('create() persists user with hashed password and uuid then creates user set
         'email' => fake()->safeEmail(),
         'password' => $password,
         'password_confirmation' => $password,
-        'timezone' => fake()->timezone(),
+        'timezone' => $timezone = fake()->timezone(),
     ]);
 
     $user = $this->userService->create($packet);
@@ -36,7 +36,7 @@ test('create() persists user with hashed password and uuid then creates user set
 
     assertModelExists($user);
 
-    assertDatabaseHas((new User)->getTable(), $packetData->except('password')->toArray());
+    assertDatabaseHas((new User)->getTable(), $packetData->except(['password', 'timezone'])->toArray());
 
     expect(Hash::check($password, $user->password))->toBeTrue();
 
@@ -44,6 +44,7 @@ test('create() persists user with hashed password and uuid then creates user set
 
     assertDatabaseHas((new UserSetting)->getTable(), [
         'user_id' => $user->id,
+        'timezone' => $timezone,
     ]);
 });
 

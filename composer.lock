@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "752cdd961d4c6d3d4981b8e52cb14bc7",
+    "content-hash": "8ca14fa13e57f34a0eb374ccb08a0a22",
     "packages": [
         {
             "name": "brick/math",
@@ -580,6 +580,65 @@
                 }
             ],
             "time": "2023-10-12T05:21:21+00:00"
+        },
+        {
+            "name": "gillyware/atlas",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gillyware/atlas.git",
+                "reference": "6105ebd346b22347b0b0f9fe6d55449a8014b6eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gillyware/atlas/zipball/6105ebd346b22347b0b0f9fe6d55449a8014b6eb",
+                "reference": "6105ebd346b22347b0b0f9fe6d55449a8014b6eb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "gillyware/postal": "^1.1",
+                "illuminate/contracts": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.22",
+                "orchestra/testbench": "^8.18|^9.0|^10.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.4|^11.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gillyware\\Atlas\\Providers\\AtlasServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gillyware\\Atlas\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bradley Johnson",
+                    "email": "braxey@gillyware.com"
+                }
+            ],
+            "keywords": [
+                "timezones"
+            ],
+            "support": {
+                "issues": "https://github.com/gillyware/atlas/issues",
+                "source": "https://github.com/gillyware/atlas/tree/0.0.1"
+            },
+            "time": "2025-08-10T15:18:32+00:00"
         },
         {
             "name": "gillyware/gatekeeper",

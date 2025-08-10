@@ -36,7 +36,7 @@ test('create() persists user with hashed password and uuid then creates user set
 
     assertModelExists($user);
 
-    assertDatabaseHas((new User)->getTable(), $packetData->except('password')->toArray());
+    assertDatabaseHas((new User)->getTable(), $packetData->except(['password', 'timezone'])->toArray());
 
     expect(Hash::check($password, $user->password))->toBeTrue();
 

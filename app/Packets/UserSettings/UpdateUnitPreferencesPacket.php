@@ -9,10 +9,9 @@ use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;
 use Gillyware\Postal\Attributes\Field;
 use Gillyware\Postal\Attributes\Rule;
-use Gillyware\Postal\Packet;
 use Illuminate\Validation\Rule as ValidationRule;
 
-final class UpdateUnitPreferencesPacket extends Packet
+final class UpdateUnitPreferencesPacket extends UpdateUserSettingPacket
 {
     public readonly MilkUnit $milkUnit;
 
