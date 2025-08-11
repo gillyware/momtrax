@@ -5,6 +5,8 @@ import type { Config } from 'ziggy-js';
 
 export interface Auth {
     user: User | null;
+    settings: UserSetting | null;
+    features: UserFeatures | null;
 }
 
 export interface BreadcrumbItem {
@@ -43,8 +45,6 @@ export interface User {
     avatar?: string;
     created_at: string;
     updated_at: string;
-    settings: UserSetting;
-    [key: string]: unknown;
 }
 
 export interface UserSetting {
@@ -57,5 +57,15 @@ export interface UserSetting {
     timezone: string;
     created_at: string;
     updated_at: string;
-    [key: string]: unknown;
+}
+
+export interface UserFeatures {
+    pumping: {
+        enabled: boolean;
+        prefer_start_time: boolean;
+        count_from_start: boolean;
+    };
+    children: {
+        enabled: boolean;
+    };
 }

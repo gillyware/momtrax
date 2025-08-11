@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Pumping;
 use App\Models\User;
 use App\Models\UserSetting;
 use App\Packets\Users\StoreUserPacket;
@@ -82,8 +83,9 @@ test('updateProfile() updates profile fields and keeps password and uuid unchang
     ]);
 });
 
-test('destroy() deletes user and settings and returns true', function () {
+test('destroy() deletes user, settings, and pumpings', function () {
     $user = User::factory()->create();
+    $pumpings = Pumping::factory()->forUser($user)->count(10)->create();
 
     $result = $this->userService->destroy($user);
 
@@ -92,6 +94,8 @@ test('destroy() deletes user and settings and returns true', function () {
     assertDatabaseMissing((new User)->getTable(), ['id' => $user->id]);
 
     assertDatabaseMissing((new UserSetting)->getTable(), ['user_id' => $user->id]);
+
+    assertDatabaseMissing((new Pumping)->getTable(), ['user_id' => $user->id]);
 });
 
 test('destroy() called twice returns false on second attempt', function () {

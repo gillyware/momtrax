@@ -8,6 +8,7 @@ use App\Enums\Appearance;
 use App\Enums\HeightUnit;
 use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;
+use App\Models\User;
 use App\Models\UserSetting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,12 +20,18 @@ final class UserSettingFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(),
             'milk_unit' => MilkUnit::random(),
             'height_unit' => HeightUnit::random(),
             'weight_unit' => WeightUnit::random(),
             'appearance' => Appearance::random(),
             'timezone' => fake()->timezone(),
         ];
+    }
+
+    public function forUser(User $user): self
+    {
+        return $this->state([
+            'user_id' => $user->id,
+        ]);
     }
 }

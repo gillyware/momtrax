@@ -7,8 +7,7 @@ declare(strict_types=1);
  * Test Case
  * **********************************************************************************
  */
-pest()->extend(Tests\TestCase::class)
-    ->in('Feature', 'Unit');
+pest()->extend(Tests\TestCase::class)->in('Feature', 'Unit');
 
 /**
  * **********************************************************************************

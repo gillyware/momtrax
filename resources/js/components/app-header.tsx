@@ -10,7 +10,7 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { LayoutGrid, LogIn, Menu, UserPlus } from 'lucide-react';
+import { Fuel, LayoutGrid, LogIn, Menu, UserPlus } from 'lucide-react';
 import { useMemo } from 'react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
@@ -26,7 +26,10 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
     const mainNavItems: NavItem[] = useMemo(() => {
         if (auth.user) {
-            return [{ title: 'Dashboard', href: '/dashboard', icon: LayoutGrid }];
+            return [
+                { title: 'Dashboard', href: '/dashboard', icon: LayoutGrid },
+                { title: 'Pumpings', href: '/pumpings', icon: Fuel },
+            ];
         }
 
         return [

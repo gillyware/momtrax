@@ -4,18 +4,33 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Contracts\UserSettingServiceInterface;
+use App\Models\User;
 use App\Models\UserSetting;
+use App\Packets\UserSettings\StoreUserSettingPacket;
 use App\Packets\UserSettings\UpdateUserSettingPacket;
-use App\Repositories\UserSettingRepository;
 use Illuminate\Container\Attributes\Singleton;
 
 #[Singleton]
-final class UserSettingService
+final class UserSettingService implements UserSettingServiceInterface
 {
-    public function __construct(private readonly UserSettingRepository $userSettingRepository) {}
+    /**
+     * {@inheritDoc}
+     */
+    public function createForUser(User $user, StoreUserSettingPacket $storeUserSettingPacket): UserSetting
+    {
+        return UserSetting::create(array_merge($storeUserSettingPacket->toArray(), [
+            'user_id' => $user->id,
+        ]));
+    }
 
+    /**
+     * {@inheritDoc}
+     */
     public function update(UserSetting $settings, UpdateUserSettingPacket $updateSettingsPacket): UserSetting
     {
-        return $this->userSettingRepository->update($settings, $updateSettingsPacket);
+        $settings->update($updateSettingsPacket->toArray());
+
+        return $settings->refresh();
     }
 }

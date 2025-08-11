@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
-import SettingsLayout from '@/layouts/settings/layout';
+import SettingsLayout from '@/layouts/settings-layout';
 import { cn } from '@/lib/utils';
 import { SharedData, UserSetting, type BreadcrumbItem } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/react';
@@ -26,7 +26,7 @@ type TimezoneItem = string;
 
 export default function Localization() {
     const { auth, timezoneNames } = usePage<SharedData>().props;
-    const settings: UserSetting = useMemo(() => auth.user?.settings as UserSetting, [auth]);
+    const settings: UserSetting = useMemo(() => auth.settings as UserSetting, [auth]);
 
     const { data, setData, patch, errors, processing } = useForm<Required<LocalizationForm>>({
         timezone: settings.timezone,
@@ -44,7 +44,7 @@ export default function Localization() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Localization settings" />
+            <Head title="Localization" />
 
             <SettingsLayout>
                 <div className="space-y-6">
