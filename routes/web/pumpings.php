@@ -9,7 +9,7 @@ Route::middleware('auth')->group(function () {
 
     /**
      * **********************************************************************************
-     * Pumping
+     * Pumpings
      * **********************************************************************************
      */
     Route::controller(PumpingController::class)->name('pumpings.')->group(function () {

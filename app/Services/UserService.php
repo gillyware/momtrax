@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Contracts\UserServiceInterface;
-use App\Enums\MomTraxFeature;
+use App\Enums\MomTraxUserFeature;
 use App\Models\User;
 use App\Packets\Users\StoreUserPacket;
+use App\Packets\Users\UpdateUserFeaturePacket;
 use App\Packets\Users\UpdateUserProfilePacket;
 use App\Packets\UserSettings\StoreUserSettingPacket;
 use Illuminate\Container\Attributes\Singleton;
@@ -27,12 +28,12 @@ final class UserService implements UserServiceInterface
     {
         return [
             'pumping' => [
-                'enabled' => $user->hasFeature(MomTraxFeature::PumpingEnabled),
-                'prefer_start_time' => $user->hasFeature(MomTraxFeature::PumpingPreferStartTime),
-                'count_from_start' => $user->hasFeature(MomTraxFeature::PumpingCountFromStart),
+                'enabled' => $user->hasFeature(MomTraxUserFeature::PumpingEnabled),
+                'prefer_start_time' => $user->hasFeature(MomTraxUserFeature::PumpingPreferStartTime),
+                'count_from_start' => $user->hasFeature(MomTraxUserFeature::PumpingCountFromStart),
             ],
             'children' => [
-                'enabled' => $user->hasFeature(MomTraxFeature::ChildrenEnabled),
+                'enabled' => $user->hasFeature(MomTraxUserFeature::ChildrenEnabled),
             ],
         ];
     }
@@ -69,6 +70,20 @@ final class UserService implements UserServiceInterface
 
             return $user->refresh();
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateFeature(User $user, UpdateUserFeaturePacket $updateUserFeaturePacket): User
+    {
+        if ($updateUserFeaturePacket->enabled) {
+            $user->undenyFeature($updateUserFeaturePacket->featureName);
+        } else {
+            $user->denyFeature($updateUserFeaturePacket->featureName);
+        }
+
+        return $user;
     }
 
     /**

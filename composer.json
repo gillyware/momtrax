@@ -15,6 +15,7 @@
         "gillyware/postal": "^1.1",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
+        "laravel/prompts": "^0.3.6",
         "laravel/tinker": "^2.10.1",
         "tightenco/ziggy": "^2.4"
     },
@@ -57,10 +58,7 @@
         "setup": [
             "composer install",
             "npm install",
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
+            "@php artisan momtrax:setup --fresh"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",

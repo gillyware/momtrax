@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Contracts\PumpingServiceInterface;
-use App\Enums\MomTraxFeature;
+use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Packets\Pumping\PersistPumpingPacket;
+use Illuminate\Container\Attributes\Singleton;
 
+#[Singleton]
 final class PumpingService implements PumpingServiceInterface
 {
     /**
@@ -50,7 +52,7 @@ final class PumpingService implements PumpingServiceInterface
     private function transformPacketDataForPersisting(User $user, PersistPumpingPacket $persistPumpingPacket): array
     {
         $pumpingData = $persistPumpingPacket->toArray();
-        $preferStartTime = $user->hasFeature(MomTraxFeature::PumpingPreferStartTime);
+        $preferStartTime = $user->hasFeature(MomTraxUserFeature::PumpingPreferStartTime);
 
         $startDateTime = $preferStartTime
             ? $persistPumpingPacket->dateTime

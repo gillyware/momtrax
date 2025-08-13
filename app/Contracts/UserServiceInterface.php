@@ -6,6 +6,7 @@ namespace App\Contracts;
 
 use App\Models\User;
 use App\Packets\Users\StoreUserPacket;
+use App\Packets\Users\UpdateUserFeaturePacket;
 use App\Packets\Users\UpdateUserProfilePacket;
 
 interface UserServiceInterface
@@ -27,6 +28,8 @@ interface UserServiceInterface
     public function create(StoreUserPacket $storeUserPacket): User;
 
     public function updateProfile(User $user, UpdateUserProfilePacket $updateUserProfilePacket): User;
+
+    public function updateFeature(User $user, UpdateUserFeaturePacket $updateUserFeaturePacket): User;
 
     public function destroy(User $user): bool;
 }

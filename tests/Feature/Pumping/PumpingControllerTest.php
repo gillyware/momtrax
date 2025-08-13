@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\MomTraxFeature;
+use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use Gillyware\Gatekeeper\Facades\Gatekeeper;
@@ -13,6 +13,10 @@ use function Pest\Laravel\assertDatabaseMissing;
 beforeEach(function () {
     $this->user = User::factory()->create();
     $this->actingAs($this->user);
+});
+
+test('index pumping screen can be rendered', function () {
+    $this->get(route('pumpings.index'))->assertStatus(200);
 });
 
 test('create pumping screen can be rendered', function () {
@@ -48,7 +52,7 @@ test('pumpings can be stored while preferring start time', function () {
 });
 
 test('pumpings can be stored while preferring end time', function () {
-    Gatekeeper::systemActor()->denyFeatureFromModel($this->user, MomTraxFeature::PumpingPreferStartTime);
+    Gatekeeper::systemActor()->denyFeatureFromModel($this->user, MomTraxUserFeature::PumpingPreferStartTime);
 
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
@@ -112,7 +116,7 @@ test('pumpings can be updated while preferring start time', function () {
 test('pumpings can be updated while preferring end time', function () {
     $pumping = Pumping::factory()->forUser($this->user)->create();
 
-    Gatekeeper::systemActor()->denyFeatureFromModel($this->user, MomTraxFeature::PumpingPreferStartTime);
+    Gatekeeper::systemActor()->denyFeatureFromModel($this->user, MomTraxUserFeature::PumpingPreferStartTime);
 
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 

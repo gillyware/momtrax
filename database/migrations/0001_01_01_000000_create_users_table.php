@@ -16,7 +16,8 @@ return new class extends Migration
     {
         Schema::create((new User)->getTable(), function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique()->index();
+            $table->uuid()->unique()->index();
+
             $table->string('first_name');
             $table->string('last_name');
             $table->string('nickname');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('pfp_extension')->nullable();
             $table->rememberToken();
+
             $table->timestamps();
         });
 

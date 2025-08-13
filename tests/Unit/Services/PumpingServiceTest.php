@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\MomTraxFeature;
+use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Packets\Pumping\PersistPumpingPacket;
@@ -55,7 +55,7 @@ test('create() persists pumping while preferring start time', function () {
 test('create() persists pumping while preferring end time', function () {
     $user = User::factory()->create();
 
-    Gatekeeper::systemActor()->denyFeatureFromModel($user, MomTraxFeature::PumpingPreferStartTime);
+    Gatekeeper::systemActor()->denyFeatureFromModel($user, MomTraxUserFeature::PumpingPreferStartTime);
 
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
@@ -126,7 +126,7 @@ test('update() updates pumping while preferring end time', function () {
     $user = User::factory()->create();
     $pumping = Pumping::factory()->forUser($user)->create();
 
-    Gatekeeper::systemActor()->denyFeatureFromModel($user, MomTraxFeature::PumpingPreferStartTime);
+    Gatekeeper::systemActor()->denyFeatureFromModel($user, MomTraxUserFeature::PumpingPreferStartTime);
 
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 

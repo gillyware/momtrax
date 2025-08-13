@@ -6,10 +6,10 @@ namespace App\Enums;
 
 use App\Support\EnumHelpers;
 
-enum MomTraxTeam: string
+enum Gender: string
 {
     use EnumHelpers;
 
-    case Unlimited = 'unlimited';
-    case Premium = 'premium';
+    case Male = 'male';
+    case Female = 'female';
 }

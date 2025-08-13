@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Settings\FeaturesController;
 use App\Http\Controllers\Settings\LocalizationController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
@@ -25,6 +26,19 @@ Route::middleware('auth')->group(function () {
         Route::patch('/settings/profile', 'update')->name('profile.update');
 
         Route::delete('/settings/profile', 'destroy')->name('profile.destroy');
+
+    });
+
+    /**
+     * **********************************************************************************
+     * Features
+     * **********************************************************************************
+     */
+    Route::controller(FeaturesController::class)->group(function () {
+
+        Route::get('/settings/features', 'edit')->name('features.edit');
+
+        Route::patch('/settings/features', 'update')->name('features.update');
 
     });
 

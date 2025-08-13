@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Models\UserSetting;
 use App\Packets\Users\StoreUserPacket;
+use App\Packets\Users\UpdateUserFeaturePacket;
 use App\Packets\Users\UpdateUserProfilePacket;
 use App\Services\UserService;
+use Gillyware\Gatekeeper\Facades\Gatekeeper;
 use Illuminate\Support\Facades\Hash;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -81,6 +84,21 @@ test('updateProfile() updates profile fields and keeps password and uuid unchang
         'nickname' => $updatePacket->nickname,
         'email' => $updatePacket->email,
     ]);
+});
+
+test('updateFeature() toggles the feature', function () {
+    $user = User::factory()->create();
+
+    Gatekeeper::setActor($user);
+
+    $updatePacket = UpdateUserFeaturePacket::from([
+        'feature_name' => $featureName = MomTraxUserFeature::random()->value,
+        'enabled' => $enabled = fake()->boolean(),
+    ]);
+
+    $updatedUser = $this->userService->updateFeature($user, $updatePacket);
+
+    expect($updatedUser->hasFeature($featureName))->toBe($enabled);
 });
 
 test('destroy() deletes user, settings, and pumpings', function () {

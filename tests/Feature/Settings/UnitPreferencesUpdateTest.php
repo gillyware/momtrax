@@ -7,15 +7,15 @@ use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;
 use App\Models\User;
 
-// test('unit preferences page is displayed', function () {
-//     $user = User::factory()->create();
+test('unit preferences page is displayed', function () {
+    $user = User::factory()->create();
 
-//     $response = $this
-//         ->actingAs($user)
-//         ->get('/settings/units');
+    $response = $this
+        ->actingAs($user)
+        ->get('/settings/units');
 
-//     $response->assertOk();
-// });
+    $response->assertOk();
+});
 
 test('unit preferences can be updated', function () {
     $user = User::factory()->create();

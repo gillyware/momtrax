@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Enums\MomTraxFeature;
+use App\Enums\MomTraxChildFeature;
+use App\Enums\MomTraxUserFeature;
 use Gillyware\Gatekeeper\Facades\Gatekeeper;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +13,10 @@ final class MomTraxFeaturesSeeder extends Seeder
 {
     public function run()
     {
-        $features = MomTraxFeature::all();
+        $features = array_merge(
+            MomTraxUserFeature::all(),
+            MomTraxChildFeature::all(),
+        );
 
         Gatekeeper::systemActor();
 

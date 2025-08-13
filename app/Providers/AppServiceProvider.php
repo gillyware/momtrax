@@ -17,5 +17,18 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::automaticallyEagerLoadRelationships();
+
+        $this->registerCommands();
+    }
+
+    protected function registerCommands()
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->commands([
+            \App\Console\SetupDevCommand::class,
+        ]);
     }
 }
