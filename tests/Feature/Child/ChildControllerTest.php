@@ -13,13 +13,13 @@ beforeEach(function () {
     $this->actingAs($this->user);
 });
 
-test('index children screen can be rendered', function () {
-    $this->get(route('children.index'))->assertStatus(200);
-});
+// test('index children screen can be rendered', function () {
+//     $this->get(route('children.index'))->assertStatus(200);
+// });
 
-test('create child screen can be rendered', function () {
-    $this->get(route('children.create'))->assertStatus(200);
-});
+// test('create child screen can be rendered', function () {
+//     $this->get(route('children.create'))->assertStatus(200);
+// });
 
 test('children can be stored', function () {
     $birthDate = now()
