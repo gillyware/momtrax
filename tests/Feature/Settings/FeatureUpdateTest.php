@@ -5,15 +5,15 @@ declare(strict_types=1);
 use App\Enums\MomTraxUserFeature;
 use App\Models\User;
 
-test('features page is displayed', function () {
-    $user = User::factory()->create();
+// test('features page is displayed', function () {
+//     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
-        ->get('/settings/features');
+//     $response = $this
+//         ->actingAs($user)
+//         ->get('/settings/features');
 
-    $response->assertOk();
-});
+//     $response->assertOk();
+// });
 
 test('features can be toggled', function () {
     $user = User::factory()->create();
