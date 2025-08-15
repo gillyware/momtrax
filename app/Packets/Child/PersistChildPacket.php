@@ -12,7 +12,7 @@ use Gillyware\Postal\Packet;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\Rule as ValidationRule;
 
-final class StoreChildPacket extends Packet
+final class PersistChildPacket extends Packet
 {
     public readonly Carbon $birthDate;
 

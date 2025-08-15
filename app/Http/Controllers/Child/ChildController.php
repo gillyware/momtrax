@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Child;
 
 use App\Http\Controllers\Controller;
 use App\Models\Child;
-use App\Packets\Child\StoreChildPacket;
+use App\Packets\Child\PersistChildPacket;
 use App\Services\ChildService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -35,9 +35,9 @@ final class ChildController extends Controller
     /**
      * Store a child entry.
      */
-    public function store(StoreChildPacket $storeChildPacket): RedirectResponse
+    public function store(PersistChildPacket $persistChildPacket): RedirectResponse
     {
-        $this->childService->create(user(), $storeChildPacket);
+        $this->childService->create(user(), $persistChildPacket);
 
         return to_route('children.index');
     }
@@ -51,22 +51,22 @@ final class ChildController extends Controller
     }
 
     /**
-     * Update a child entry.
+     * Update a child profile.
      */
-    // public function update(Child $child, PersistPumpingPacket $persistPumpingPacket): RedirectResponse
-    // {
-    //     $this->childService->update($child, $persistPumpingPacket);
+    public function update(Child $child, PersistChildPacket $persistChildPacket): RedirectResponse
+    {
+        $this->childService->updateProfile($child, $persistChildPacket);
 
-    //     return to_route('children.index');
-    // }
+        return to_route('children.index');
+    }
 
     /**
      * Destroy a child entry.
      */
-    // public function destroy(Child $child): RedirectResponse
-    // {
-    //     $this->childService->destroy($child);
+    public function destroy(Child $child): RedirectResponse
+    {
+        $this->childService->destroy($child);
 
-    //     return to_route('children.index');
-    // }
+        return to_route('children.index');
+    }
 }

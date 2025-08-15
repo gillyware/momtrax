@@ -22,7 +22,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string $nickname
  * @property string $email
  * @property string $password
- * @property string $timezone
  * @property string|null $pfp_extension
  * @property string|null $remember_token
  * @property Carbon $created_at

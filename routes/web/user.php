@@ -2,13 +2,31 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Settings\FeaturesController;
-use App\Http\Controllers\Settings\LocalizationController;
-use App\Http\Controllers\Settings\PasswordController;
-use App\Http\Controllers\Settings\ProfileController;
-use App\Http\Controllers\Settings\UnitPreferencesController;
+use App\Http\Controllers\User\RegisteredUserController;
+use App\Http\Controllers\User\Settings\FeaturesController;
+use App\Http\Controllers\User\Settings\LocalizationController;
+use App\Http\Controllers\User\Settings\PasswordController;
+use App\Http\Controllers\User\Settings\ProfileController;
+use App\Http\Controllers\User\Settings\UnitPreferencesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+Route::middleware('guest')->group(function () {
+
+    /**
+     * **********************************************************************************
+     * Registration
+     * **********************************************************************************
+     */
+    Route::controller(RegisteredUserController::class)->group(function () {
+
+        Route::get('/register', 'create')->name('register');
+
+        Route::post('/register', 'store')->middleware('throttle:6,1');
+
+    });
+
+});
 
 Route::middleware('auth')->group(function () {
 

@@ -6,23 +6,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-
-    /**
-     * **********************************************************************************
-     * Registration
-     * **********************************************************************************
-     */
-    Route::controller(RegisteredUserController::class)->group(function () {
-
-        Route::get('/register', 'create')->name('register');
-
-        Route::post('/register', 'store')->middleware('throttle:6,1');
-
-    });
 
     /**
      * **********************************************************************************

@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property HeightUnit $height_unit
  * @property WeightUnit $weight_unit
  * @property Appearance $appearance
+ * @property string $timezone
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */

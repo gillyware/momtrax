@@ -9,7 +9,7 @@ Route::middleware('auth')->group(function () {
 
     /**
      * **********************************************************************************
-     * Children
+     * Register
      * **********************************************************************************
      */
     Route::controller(ChildController::class)->name('children.')->group(function () {
@@ -20,11 +20,11 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/children', 'store')->name('store');
 
-        Route::get('/children/{child}', 'edit')->name('edit');
+        Route::get('/children/{child:uuid}', 'edit')->name('edit');
 
-        // Route::put('/children/{child}', 'update')->name('update');
+        Route::put('/children/{child:uuid}', 'update')->name('update');
 
-        // Route::delete('/children/{child}', 'destroy')->name('destroy');
+        Route::delete('/children/{child:uuid}', 'destroy')->name('destroy');
 
     });
 

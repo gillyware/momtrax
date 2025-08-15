@@ -23,7 +23,9 @@ test('create() persists pumping while preferring start time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()
+        ->addMinutes(fake()->numberBetween(0, 20))
+        ->setSecond(0);
 
     $packet = PersistPumpingPacket::from([
         'left_breast_amount' => $left,
@@ -47,8 +49,8 @@ test('create() persists pumping while preferring start time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->copy()->addMinutes($duration)->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->toDateTimeString(),
+        'end_date_time' => $dateTime->copy()->addMinutes($duration)->toDateTimeString(),
     ]);
 });
 
@@ -60,7 +62,9 @@ test('create() persists pumping while preferring end time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()
+        ->addMinutes(fake()->numberBetween(0, 20))
+        ->setSecond(0);
 
     $packet = PersistPumpingPacket::from([
         'left_breast_amount' => $left,
@@ -84,8 +88,8 @@ test('create() persists pumping while preferring end time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->copy()->subMinutes($duration)->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->copy()->subMinutes($duration)->toDateTimeString(),
+        'end_date_time' => $dateTime->toDateTimeString(),
     ]);
 });
 
@@ -96,7 +100,9 @@ test('update() updates pumping while preferring start time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()
+        ->addMinutes(fake()->numberBetween(0, 20))
+        ->setSecond(0);
 
     $packet = PersistPumpingPacket::from([
         'left_breast_amount' => $left,
@@ -117,8 +123,8 @@ test('update() updates pumping while preferring start time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->copy()->addMinutes($duration)->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->toDateTimeString(),
+        'end_date_time' => $dateTime->copy()->addMinutes($duration)->toDateTimeString(),
     ]);
 });
 
@@ -131,7 +137,9 @@ test('update() updates pumping while preferring end time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()
+        ->addMinutes(fake()->numberBetween(0, 20))
+        ->setSecond(0);
 
     $packet = PersistPumpingPacket::from([
         'left_breast_amount' => $left,
@@ -152,8 +160,8 @@ test('update() updates pumping while preferring end time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->copy()->subMinutes($duration)->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->copy()->subMinutes($duration)->toDateTimeString(),
+        'end_date_time' => $dateTime->toDateTimeString(),
     ]);
 });
 
