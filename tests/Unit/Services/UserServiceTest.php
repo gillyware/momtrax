@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Contracts\UserServiceInterface;
 use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
@@ -9,7 +10,6 @@ use App\Models\UserSetting;
 use App\Packets\Users\StoreUserPacket;
 use App\Packets\Users\UpdateUserFeaturePacket;
 use App\Packets\Users\UpdateUserProfilePacket;
-use App\Services\UserService;
 use Gillyware\Gatekeeper\Facades\Gatekeeper;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,7 +18,7 @@ use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\assertModelExists;
 
 beforeEach(function () {
-    $this->userService = resolve(UserService::class);
+    $this->userService = resolve(UserServiceInterface::class);
 });
 
 test('create() persists user with hashed password and uuid then creates user settings', function () {

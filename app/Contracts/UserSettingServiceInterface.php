@@ -8,7 +8,10 @@ use App\Models\User;
 use App\Models\UserSetting;
 use App\Packets\UserSettings\StoreUserSettingPacket;
 use App\Packets\UserSettings\UpdateUserSettingPacket;
+use App\Services\UserSettingService;
+use Illuminate\Container\Attributes\Bind;
 
+#[Bind(UserSettingService::class)]
 interface UserSettingServiceInterface
 {
     public function createForUser(User $user, StoreUserSettingPacket $storeUserSettingPacket): UserSetting;

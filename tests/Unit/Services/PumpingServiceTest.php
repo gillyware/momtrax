@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Contracts\PumpingServiceInterface;
 use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Packets\Pumping\PersistPumpingPacket;
-use App\Services\PumpingService;
 use Gillyware\Gatekeeper\Facades\Gatekeeper;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -14,7 +14,7 @@ use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\assertModelExists;
 
 beforeEach(function () {
-    $this->pumpingService = resolve(PumpingService::class);
+    $this->pumpingService = resolve(PumpingServiceInterface::class);
 });
 
 test('create() persists pumping while preferring start time', function () {

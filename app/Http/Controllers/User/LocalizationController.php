@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\User\Settings;
+namespace App\Http\Controllers\User;
 
+use App\Contracts\UserSettingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\UserSettings\UpdateLocalizationPacket;
-use App\Services\UserSettingService;
 use Gillyware\Atlas\Facades\Atlas;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -14,7 +14,7 @@ use Inertia\Response;
 
 final class LocalizationController extends Controller
 {
-    public function __construct(private readonly UserSettingService $userSettingService) {}
+    public function __construct(private readonly UserSettingServiceInterface $userSettingService) {}
 
     /**
      * Show the user's localization settings page.

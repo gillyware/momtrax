@@ -9,9 +9,7 @@ use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Packets\Pumping\PersistPumpingPacket;
-use Illuminate\Container\Attributes\Singleton;
 
-#[Singleton]
 final class PumpingService implements PumpingServiceInterface
 {
     /**

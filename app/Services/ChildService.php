@@ -8,9 +8,7 @@ use App\Contracts\ChildServiceInterface;
 use App\Models\Child;
 use App\Models\User;
 use App\Packets\Child\PersistChildPacket;
-use Illuminate\Container\Attributes\Singleton;
 
-#[Singleton]
 final class ChildService implements ChildServiceInterface
 {
     /**

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\User\Settings;
+namespace App\Http\Controllers\User;
 
+use App\Contracts\UserSettingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
-use App\Services\UserSettingService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 final class UnitPreferencesController extends Controller
 {
-    public function __construct(private readonly UserSettingService $userSettingService) {}
+    public function __construct(private readonly UserSettingServiceInterface $userSettingService) {}
 
     /**
      * Show the user's unit preferences settings page.

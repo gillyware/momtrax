@@ -9,9 +9,7 @@ use App\Models\User;
 use App\Models\UserSetting;
 use App\Packets\UserSettings\StoreUserSettingPacket;
 use App\Packets\UserSettings\UpdateUserSettingPacket;
-use Illuminate\Container\Attributes\Singleton;
 
-#[Singleton]
 final class UserSettingService implements UserSettingServiceInterface
 {
     /**

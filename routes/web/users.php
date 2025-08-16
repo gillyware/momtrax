@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\User\FeaturesController;
+use App\Http\Controllers\User\LocalizationController;
+use App\Http\Controllers\User\PasswordController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisteredUserController;
-use App\Http\Controllers\User\Settings\FeaturesController;
-use App\Http\Controllers\User\Settings\LocalizationController;
-use App\Http\Controllers\User\Settings\PasswordController;
-use App\Http\Controllers\User\Settings\ProfileController;
-use App\Http\Controllers\User\Settings\UnitPreferencesController;
+use App\Http\Controllers\User\UnitPreferencesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

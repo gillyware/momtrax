@@ -11,12 +11,10 @@ use App\Packets\Users\StoreUserPacket;
 use App\Packets\Users\UpdateUserFeaturePacket;
 use App\Packets\Users\UpdateUserProfilePacket;
 use App\Packets\UserSettings\StoreUserSettingPacket;
-use Illuminate\Container\Attributes\Singleton;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-#[Singleton]
 final class UserService implements UserServiceInterface
 {
     public function __construct(private readonly UserSettingService $userSettingService) {}

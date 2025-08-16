@@ -8,7 +8,10 @@ use App\Models\User;
 use App\Packets\Users\StoreUserPacket;
 use App\Packets\Users\UpdateUserFeaturePacket;
 use App\Packets\Users\UpdateUserProfilePacket;
+use App\Services\UserService;
+use Illuminate\Container\Attributes\Bind;
 
+#[Bind(UserService::class)]
 interface UserServiceInterface
 {
     /**

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
+use App\Contracts\ChildServiceInterface;
 use App\Enums\Gender;
 use App\Models\Child;
 use App\Models\User;
 use App\Packets\Child\PersistChildPacket;
-use App\Services\ChildService;
 
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\assertModelExists;
 
 beforeEach(function () {
-    $this->childService = resolve(ChildService::class);
+    $this->childService = resolve(ChildServiceInterface::class);
 });
 
 test('create() persists child', function () {

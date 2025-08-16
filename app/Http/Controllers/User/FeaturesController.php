@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\User\Settings;
+namespace App\Http\Controllers\User;
 
+use App\Contracts\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\Users\UpdateUserFeaturePacket;
-use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 final class FeaturesController extends Controller
 {
-    public function __construct(private readonly UserService $userService) {}
+    public function __construct(private readonly UserServiceInterface $userService) {}
 
     /**
      * Show the user's feature settings page.

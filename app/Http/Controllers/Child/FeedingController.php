@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Child;
 
-use App\Contracts\ChildServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Packets\Child\PersistChildPacket;
+use App\Services\ChildService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
-final class ChildController extends Controller
+final class FeedingController extends Controller
 {
-    public function __construct(private readonly ChildServiceInterface $childService) {}
+    public function __construct(private readonly ChildService $childService) {}
 
     /**
      * Children index.

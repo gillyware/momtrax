@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Pumping;
 
+use App\Contracts\PumpingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Pumping;
 use App\Packets\Pumping\PersistPumpingPacket;
-use App\Services\PumpingService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 final class PumpingController extends Controller
 {
-    public function __construct(private readonly PumpingService $pumpingService) {}
+    public function __construct(private readonly PumpingServiceInterface $pumpingService) {}
 
     /**
      * Pumping index.

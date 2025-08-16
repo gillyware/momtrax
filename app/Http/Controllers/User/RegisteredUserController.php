@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
+use App\Contracts\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\Users\StoreUserPacket;
-use App\Services\UserService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ use Inertia\Response;
 
 final class RegisteredUserController extends Controller
 {
-    public function __construct(private readonly UserService $userService) {}
+    public function __construct(private readonly UserServiceInterface $userService) {}
 
     /**
      * Show the registration page.

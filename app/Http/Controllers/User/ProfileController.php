@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\User\Settings;
+namespace App\Http\Controllers\User;
 
+use App\Contracts\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
 use App\Packets\Users\UpdateUserProfilePacket;
-use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ use Inertia\Response;
 
 final class ProfileController extends Controller
 {
-    public function __construct(private readonly UserService $userService) {}
+    public function __construct(private readonly UserServiceInterface $userService) {}
 
     /**
      * Show the user's profile settings page.

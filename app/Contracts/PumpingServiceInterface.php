@@ -7,7 +7,10 @@ namespace App\Contracts;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Packets\Pumping\PersistPumpingPacket;
+use App\Services\PumpingService;
+use Illuminate\Container\Attributes\Bind;
 
+#[Bind(PumpingService::class)]
 interface PumpingServiceInterface
 {
     public function create(User $user, PersistPumpingPacket $persistPumpingPacket): Pumping;
