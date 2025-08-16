@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Contracts\UserServiceInterface;
+use App\Contracts\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\Users\StoreUserPacket;
 use Illuminate\Auth\Events\Registered;
@@ -23,7 +23,7 @@ final class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('auth/register');
+        return Inertia::render('users/register');
     }
 
     /**

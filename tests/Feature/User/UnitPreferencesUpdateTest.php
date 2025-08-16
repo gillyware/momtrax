@@ -12,7 +12,7 @@ test('unit preferences page is displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/settings/units');
+        ->get(route('settings.units.edit'));
 
     $response->assertOk();
 });
@@ -24,7 +24,7 @@ test('unit preferences can be updated', function () {
 
     $response = $this
         ->actingAs($user)
-        ->patch('/settings/units', [
+        ->patch(route('settings.units.update'), [
             'milk_unit' => $newMilkUnit->value,
             'height_unit' => $newHeightUnit->value,
             'weight_unit' => $newWeightUnit->value,
@@ -32,7 +32,7 @@ test('unit preferences can be updated', function () {
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect('/settings/units');
+        ->assertRedirect(route('settings.units.edit'));
 
     $settings = $user->settings->refresh();
 

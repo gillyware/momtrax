@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\User;
 
-use App\Contracts\UserServiceInterface;
+use App\Contracts\User\UserServiceInterface;
 use App\Enums\MomTraxUserFeature;
 use App\Models\User;
 use App\Packets\Users\StoreUserPacket;

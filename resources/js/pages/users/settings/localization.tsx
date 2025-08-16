@@ -37,7 +37,7 @@ export default function Localization() {
     }, [timezoneNames, settings]);
 
     useEffect(() => {
-        patch(route('localization.update'), {
+        patch(route('settings.localization.update'), {
             preserveScroll: true,
         });
     }, [data, patch]);

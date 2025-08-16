@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Contracts\UserSettingServiceInterface;
+use App\Contracts\User\UserSettingServiceInterface;
 use App\Enums\HeightUnit;
 use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Contracts\PumpingServiceInterface;
+use App\Contracts\User\PumpingServiceInterface;
 use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;

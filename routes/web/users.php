@@ -6,6 +6,7 @@ use App\Http\Controllers\User\FeaturesController;
 use App\Http\Controllers\User\LocalizationController;
 use App\Http\Controllers\User\PasswordController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\PumpingController;
 use App\Http\Controllers\User\RegisteredUserController;
 use App\Http\Controllers\User\UnitPreferencesController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,12 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::middleware('auth')->group(function () {
+/**
+ * **********************************************************************************
+ * Settings
+ * **********************************************************************************
+ */
+Route::middleware('auth')->name('settings.')->group(function () {
 
     /**
      * **********************************************************************************
@@ -37,13 +43,13 @@ Route::middleware('auth')->group(function () {
      */
     Route::redirect('/settings', '/settings/profile');
 
-    Route::controller(ProfileController::class)->group(function () {
+    Route::controller(ProfileController::class)->name('profile.')->group(function () {
 
-        Route::get('/settings/profile', 'edit')->name('profile.edit');
+        Route::get('/settings/profile', 'edit')->name('edit');
 
-        Route::patch('/settings/profile', 'update')->name('profile.update');
+        Route::patch('/settings/profile', 'update')->name('update');
 
-        Route::delete('/settings/profile', 'destroy')->name('profile.destroy');
+        Route::delete('/settings/profile', 'destroy')->name('destroy');
 
     });
 
@@ -52,11 +58,11 @@ Route::middleware('auth')->group(function () {
      * Features
      * **********************************************************************************
      */
-    Route::controller(FeaturesController::class)->group(function () {
+    Route::controller(FeaturesController::class)->name('features.')->group(function () {
 
-        Route::get('/settings/features', 'edit')->name('features.edit');
+        Route::get('/settings/features', 'edit')->name('edit');
 
-        Route::patch('/settings/features', 'update')->name('features.update');
+        Route::patch('/settings/features', 'update')->name('update');
 
     });
 
@@ -65,11 +71,11 @@ Route::middleware('auth')->group(function () {
      * Unit Preferences
      * **********************************************************************************
      */
-    Route::controller(UnitPreferencesController::class)->group(function () {
+    Route::controller(UnitPreferencesController::class)->name('units.')->group(function () {
 
-        Route::get('/settings/units', 'edit')->name('units.edit');
+        Route::get('/settings/units', 'edit')->name('edit');
 
-        Route::patch('/settings/units', 'update')->name('units.update');
+        Route::patch('/settings/units', 'update')->name('update');
 
     });
 
@@ -78,11 +84,11 @@ Route::middleware('auth')->group(function () {
      * Localization
      * **********************************************************************************
      */
-    Route::controller(LocalizationController::class)->group(function () {
+    Route::controller(LocalizationController::class)->name('localization.')->group(function () {
 
-        Route::get('/settings/localization', 'edit')->name('localization.edit');
+        Route::get('/settings/localization', 'edit')->name('edit');
 
-        Route::patch('/settings/localization', 'update')->name('localization.update');
+        Route::patch('/settings/localization', 'update')->name('update');
 
     });
 
@@ -91,7 +97,7 @@ Route::middleware('auth')->group(function () {
      * Appearance
      * **********************************************************************************
      */
-    Route::get('/settings/appearance', fn () => Inertia::render('settings/appearance'))
+    Route::get('/settings/appearance', fn () => Inertia::render('users/settings/appearance'))
         ->name('appearance');
 
     /**
@@ -99,12 +105,33 @@ Route::middleware('auth')->group(function () {
      * Password
      * **********************************************************************************
      */
-    Route::controller(PasswordController::class)->group(function () {
+    Route::controller(PasswordController::class)->name('password.')->group(function () {
 
-        Route::get('/settings/password', 'edit')->name('password.edit');
+        Route::get('/settings/password', 'edit')->name('edit');
 
-        Route::put('/settings/password', 'update')->name('password.update');
+        Route::put('/settings/password', 'update')->name('update');
 
     });
+
+});
+
+/**
+ * **********************************************************************************
+ * Pumpings
+ * **********************************************************************************
+ */
+Route::controller(PumpingController::class)->middleware('auth')->name('pumpings.')->group(function () {
+
+    Route::get('/pumpings', 'index')->name('index');
+
+    Route::get('/pumpings/new', 'create')->name('create');
+
+    Route::post('/pumpings', 'store')->name('store');
+
+    Route::get('/pumpings/{pumping}', 'edit')->name('edit');
+
+    Route::put('/pumpings/{pumping}', 'update')->name('update');
+
+    Route::delete('/pumpings/{pumping}', 'destroy')->name('destroy');
 
 });

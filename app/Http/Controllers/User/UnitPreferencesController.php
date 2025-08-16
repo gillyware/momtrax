@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Contracts\UserSettingServiceInterface;
+use App\Contracts\User\UserSettingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +20,7 @@ final class UnitPreferencesController extends Controller
      */
     public function edit(): Response
     {
-        return Inertia::render('settings/units');
+        return Inertia::render('users/settings/units');
     }
 
     /**
@@ -30,6 +30,6 @@ final class UnitPreferencesController extends Controller
     {
         $this->userSettingService->update(user()->settings, $updateUnitPreferencesPacket);
 
-        return to_route('units.edit');
+        return to_route('settings.units.edit');
     }
 }

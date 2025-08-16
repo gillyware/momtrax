@@ -10,7 +10,7 @@ test('localization page is displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/settings/localization');
+        ->get(route('settings.localization.edit'));
 
     $response->assertOk();
 });
@@ -22,13 +22,13 @@ test('localization can be updated', function () {
 
     $response = $this
         ->actingAs($user)
-        ->patch('/settings/localization', [
+        ->patch(route('settings.localization.update'), [
             'timezone' => $timezone,
         ]);
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect('/settings/localization');
+        ->assertRedirect(route('settings.localization.edit'));
 
     $settings = $user->settings->refresh();
 

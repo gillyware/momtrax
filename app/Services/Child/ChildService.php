@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\Child;
 
-use App\Contracts\ChildServiceInterface;
+use App\Contracts\Child\ChildServiceInterface;
 use App\Models\Child;
 use App\Models\User;
 use App\Packets\Child\PersistChildPacket;

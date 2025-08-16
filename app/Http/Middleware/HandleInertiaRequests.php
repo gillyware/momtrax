@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Services\UserService;
+use App\Contracts\User\UserServiceInterface;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -14,7 +14,7 @@ final class HandleInertiaRequests extends Middleware
 {
     protected $rootView = 'app';
 
-    public function __construct(private readonly UserService $userService) {}
+    public function __construct(private readonly UserServiceInterface $userService) {}
 
     public function version(Request $request): ?string
     {

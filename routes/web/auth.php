@@ -28,11 +28,11 @@ Route::middleware('guest')->group(function () {
      * Forgot Password
      * **********************************************************************************
      */
-    Route::controller(PasswordResetLinkController::class)->group(function () {
+    Route::controller(PasswordResetLinkController::class)->name('password.')->group(function () {
 
-        Route::get('/forgot-password', 'create')->name('password.request');
+        Route::get('/forgot-password', 'create')->name('request');
 
-        Route::post('/forgot-password', 'store')->name('password.email');
+        Route::post('/forgot-password', 'store')->name('email');
 
     });
 
@@ -41,11 +41,11 @@ Route::middleware('guest')->group(function () {
      * Reset Password
      * **********************************************************************************
      */
-    Route::controller(NewPasswordController::class)->group(function () {
+    Route::controller(NewPasswordController::class)->name('password.')->group(function () {
 
-        Route::get('/reset-password/{token}', 'create')->name('password.reset');
+        Route::get('/reset-password/{token}', 'create')->name('reset');
 
-        Route::post('/reset-password', 'store')->name('password.store');
+        Route::post('/reset-password', 'store')->name('store');
 
     });
 

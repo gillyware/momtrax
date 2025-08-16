@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Contracts\UserServiceInterface;
+use App\Contracts\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
 use App\Packets\Users\UpdateUserProfilePacket;
@@ -23,7 +23,7 @@ final class ProfileController extends Controller
      */
     public function edit(): Response
     {
-        return Inertia::render('settings/profile');
+        return Inertia::render('users/settings/profile');
     }
 
     /**
@@ -33,7 +33,7 @@ final class ProfileController extends Controller
     {
         $this->userService->updateProfile(user(), UpdateUserProfilePacket::from($request));
 
-        return to_route('profile.edit');
+        return to_route('settings.profile.edit');
     }
 
     /**

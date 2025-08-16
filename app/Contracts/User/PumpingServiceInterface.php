@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Contracts;
+namespace App\Contracts\User;
 
 use App\Models\Pumping;
 use App\Models\User;
 use App\Packets\Pumping\PersistPumpingPacket;
-use App\Services\PumpingService;
+use App\Services\User\PumpingService;
 use Illuminate\Container\Attributes\Bind;
 
 #[Bind(PumpingService::class)]

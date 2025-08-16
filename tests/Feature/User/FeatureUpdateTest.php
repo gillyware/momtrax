@@ -10,7 +10,7 @@ use App\Models\User;
 
 //     $response = $this
 //         ->actingAs($user)
-//         ->get('/settings/features');
+//         ->get(route('settings.features.edit'));
 
 //     $response->assertOk();
 // });
@@ -20,15 +20,15 @@ test('features can be toggled', function () {
 
     $response = $this
         ->actingAs($user)
-        ->from('/settings/features')
-        ->patch('/settings/features', [
+        ->from(route('settings.features.edit'))
+        ->patch(route('settings.features.update'), [
             'feature_name' => $featureName = MomTraxUserFeature::random()->value,
             'enabled' => $enabled = fake()->boolean(),
         ]);
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect('/settings/features');
+        ->assertRedirect(route('settings.features.edit'));
 
     $user = $user->refresh();
 

@@ -4,69 +4,36 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Child;
 
+use App\Contracts\Child\FeedingServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Models\Child;
-use App\Packets\Child\PersistChildPacket;
-use App\Services\ChildService;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 final class FeedingController extends Controller
 {
-    public function __construct(private readonly ChildService $childService) {}
+    public function __construct(private readonly FeedingServiceInterface $feedingService) {}
 
     /**
-     * Children index.
+     * Feedings index.
      */
     public function index(): Response
     {
-        return Inertia::render('children/index');
+        return Inertia::render('feedings/index');
     }
 
     /**
-     * Add a child entry.
+     * Add a feeding entry.
      */
     public function create(): Response
     {
-        return Inertia::render('children/create');
+        return Inertia::render('feedings/create');
     }
 
-    /**
-     * Store a child entry.
-     */
-    public function store(PersistChildPacket $persistChildPacket): RedirectResponse
+    public function store(): RedirectResponse
     {
-        $this->childService->create(user(), $persistChildPacket);
+        $this->feedingService->create(user());
 
-        return to_route('children.index');
-    }
-
-    /**
-     * Show a child entry.
-     */
-    public function edit(Child $child): Response
-    {
-        return Inertia::render('children/edit');
-    }
-
-    /**
-     * Update a child profile.
-     */
-    public function update(Child $child, PersistChildPacket $persistChildPacket): RedirectResponse
-    {
-        $this->childService->updateProfile($child, $persistChildPacket);
-
-        return to_route('children.index');
-    }
-
-    /**
-     * Destroy a child entry.
-     */
-    public function destroy(Child $child): RedirectResponse
-    {
-        $this->childService->destroy($child);
-
-        return to_route('children.index');
+        return redirect()->to('/feedings');
     }
 }

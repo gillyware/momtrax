@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Contracts\ChildServiceInterface;
+use App\Contracts\Child\ChildServiceInterface;
 use App\Enums\Gender;
 use App\Models\Child;
 use App\Models\User;

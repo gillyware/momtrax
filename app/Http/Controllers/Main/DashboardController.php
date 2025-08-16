@@ -12,6 +12,6 @@ final class DashboardController extends Controller
 {
     public function __invoke(): Response
     {
-        return Inertia::render('dashboard');
+        return Inertia::render('main/dashboard');
     }
 }

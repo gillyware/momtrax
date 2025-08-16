@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Contracts\UserSettingServiceInterface;
+use App\Contracts\User\UserSettingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\UserSettings\UpdateLocalizationPacket;
 use Gillyware\Atlas\Facades\Atlas;
@@ -24,7 +24,7 @@ final class LocalizationController extends Controller
         /** @phpstan-ignore-next-line */
         $timezoneNames = Atlas::timezones()->all()->keys();
 
-        return Inertia::render('settings/localization', [
+        return Inertia::render('users/settings/localization', [
             'timezoneNames' => $timezoneNames,
         ]);
     }
@@ -36,6 +36,6 @@ final class LocalizationController extends Controller
     {
         $this->userSettingService->update(user()->settings, $updateLocalizationPacket);
 
-        return to_route('localization.edit');
+        return to_route('settings.localization.edit');
     }
 }

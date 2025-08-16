@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Child;
 
-use App\Contracts\ChildServiceInterface;
+use App\Contracts\Child\ChildServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Packets\Child\PersistChildPacket;

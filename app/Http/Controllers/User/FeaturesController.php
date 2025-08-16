@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Contracts\UserServiceInterface;
+use App\Contracts\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Packets\Users\UpdateUserFeaturePacket;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +20,7 @@ final class FeaturesController extends Controller
      */
     public function edit(): Response
     {
-        return Inertia::render('settings/features');
+        return Inertia::render('users/settings/features');
     }
 
     /**
@@ -30,6 +30,6 @@ final class FeaturesController extends Controller
     {
         $this->userService->updateFeature(user(), $updateUserFeaturePacket);
 
-        return to_route('features.edit');
+        return to_route('settings.features.edit');
     }
 }

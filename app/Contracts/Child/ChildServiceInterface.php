@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Contracts;
+namespace App\Contracts\Child;
 
 use App\Models\Child;
 use App\Models\User;
 use App\Packets\Child\PersistChildPacket;
-use App\Services\ChildService;
+use App\Services\Child\ChildService;
 use Illuminate\Container\Attributes\Bind;
 
 #[Bind(ChildService::class)]

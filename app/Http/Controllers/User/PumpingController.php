@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Pumping;
+namespace App\Http\Controllers\User;
 
-use App\Contracts\PumpingServiceInterface;
+use App\Contracts\User\PumpingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Pumping;
 use App\Packets\Pumping\PersistPumpingPacket;
@@ -21,7 +21,7 @@ final class PumpingController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render('pumpings/index');
+        return Inertia::render('users/pumpings/index');
     }
 
     /**
@@ -29,7 +29,7 @@ final class PumpingController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('pumpings/create');
+        return Inertia::render('users/pumpings/create');
     }
 
     /**
@@ -47,7 +47,7 @@ final class PumpingController extends Controller
      */
     public function edit(Pumping $pumping): Response
     {
-        return Inertia::render('pumpings/edit');
+        return Inertia::render('users/pumpings/edit');
     }
 
     /**

@@ -12,16 +12,16 @@ final class StaticController extends Controller
 {
     public function welcome(): InertiaResponse
     {
-        return Inertia::render('welcome');
+        return Inertia::render('main/welcome');
     }
 
     public function termsOfService(): InertiaResponse
     {
-        return Inertia::render('legal/terms');
+        return Inertia::render('main/legal/terms');
     }
 
     public function privacyPolicy(): InertiaResponse
     {
-        return Inertia::render('legal/privacy');
+        return Inertia::render('main/legal/privacy');
     }
 }

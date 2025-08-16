@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Contracts;
+namespace App\Contracts\User;
 
 use App\Models\User;
 use App\Models\UserSetting;
 use App\Packets\UserSettings\StoreUserSettingPacket;
 use App\Packets\UserSettings\UpdateUserSettingPacket;
-use App\Services\UserSettingService;
+use App\Services\User\UserSettingService;
 use Illuminate\Container\Attributes\Bind;
 
 #[Bind(UserSettingService::class)]

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\User;
 
-use App\Contracts\UserSettingServiceInterface;
+use App\Contracts\User\UserSettingServiceInterface;
 use App\Models\User;
 use App\Models\UserSetting;
 use App\Packets\UserSettings\StoreUserSettingPacket;

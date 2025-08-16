@@ -87,7 +87,7 @@ export default function Units() {
     }, [weightUnitItems, settings]);
 
     useEffect(() => {
-        patch(route('units.update'), {
+        patch(route('settings.units.update'), {
             preserveScroll: true,
         });
     }, [data, patch]);
