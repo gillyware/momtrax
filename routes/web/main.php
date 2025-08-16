@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\StaticController;
+use App\Http\Controllers\Main\DashboardController;
+use App\Http\Controllers\Main\StaticController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -19,3 +20,12 @@ Route::controller(StaticController::class)->group(function () {
     Route::get('/privacy', 'privacyPolicy')->name('privacy');
 
 });
+
+/**
+ * **********************************************************************************
+ * Dashboard
+ * **********************************************************************************
+ */
+Route::get('/dashboard', DashboardController::class)
+    ->middleware('auth')
+    ->name('dashboard');
