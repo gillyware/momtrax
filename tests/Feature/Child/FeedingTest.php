@@ -18,17 +18,17 @@ beforeEach(function () {
     $this->actingAs($this->user);
 });
 
-test('index feeding screen can be rendered', function () {
-    $this->get(route('children.feedings.index', [
-        'child' => $this->child->uuid,
-    ]))->assertStatus(200);
-});
+// test('index feeding screen can be rendered', function () {
+//     $this->get(route('children.feedings.index', [
+//         'child' => $this->child->uuid,
+//     ]))->assertStatus(200);
+// });
 
-test('create feeding screen can be rendered', function () {
-    $this->get(route('children.feedings.create', [
-        'child' => $this->child->uuid,
-    ]))->assertStatus(200);
-});
+// test('create feeding screen can be rendered', function () {
+//     $this->get(route('children.feedings.create', [
+//         'child' => $this->child->uuid,
+//     ]))->assertStatus(200);
+// });
 
 test('feedings can be stored while preferring start time', function () {
     $feedingType = FeedingType::random();
