@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Child\ChildController;
 use App\Http\Controllers\Child\FeedingController;
+use App\Http\Controllers\Child\SleepingController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->name('children.')->group(function () {
@@ -67,6 +68,27 @@ Route::middleware('auth')->name('children.')->group(function () {
             Route::put('/children/{child}/feedings/{feeding}', 'update')->name('update');
 
             Route::delete('/children/{child}/feedings/{feeding}', 'destroy')->name('destroy');
+
+        });
+
+        /**
+         * **********************************************************************************
+         * Sleepings
+         * **********************************************************************************
+         */
+        Route::controller(SleepingController::class)->name('sleepings.')->group(function () {
+
+            Route::get('/children/{child}/sleepings', 'index')->name('index');
+
+            Route::get('/children/{child}/sleepings/new', 'create')->name('create');
+
+            Route::post('/children/{child}/sleepings', 'store')->name('store');
+
+            Route::get('/children/{child}/sleepings/{sleeping}', 'edit')->name('edit');
+
+            Route::put('/children/{child}/sleepings/{sleeping}', 'update')->name('update');
+
+            Route::delete('/children/{child}/sleepings/{sleeping}', 'destroy')->name('destroy');
 
         });
 
