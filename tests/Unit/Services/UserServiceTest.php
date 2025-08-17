@@ -7,9 +7,9 @@ use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
 use App\Models\UserSetting;
-use App\Packets\Users\StoreUserPacket;
-use App\Packets\Users\UpdateUserFeaturePacket;
-use App\Packets\Users\UpdateUserProfilePacket;
+use App\Packets\User\StoreUserPacket;
+use App\Packets\User\UpdateUserFeaturePacket;
+use App\Packets\User\UpdateUserProfilePacket;
 use Gillyware\Gatekeeper\Facades\Gatekeeper;
 use Illuminate\Support\Facades\Hash;
 

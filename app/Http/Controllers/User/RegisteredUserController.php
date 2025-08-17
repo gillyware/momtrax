@@ -6,7 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Contracts\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Packets\Users\StoreUserPacket;
+use App\Packets\User\StoreUserPacket;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;

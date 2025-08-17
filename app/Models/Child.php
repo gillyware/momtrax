@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\Gender;
 use Carbon\Carbon;
 use Database\Factories\ChildFactory;
+use Gillyware\Gatekeeper\Traits\HasFeatures;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,6 +29,8 @@ final class Child extends Model
     /** @use HasFactory<ChildFactory> */
     use HasFactory;
 
+    use HasFeatures;
+
     protected $table = 'children';
 
     protected $fillable = [
@@ -38,6 +41,11 @@ final class Child extends Model
         'gender',
         'pfp_extension',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
 
     public function user(): BelongsTo
     {

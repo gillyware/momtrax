@@ -8,7 +8,7 @@ use App\Contracts\User\PumpingServiceInterface;
 use App\Enums\MomTraxUserFeature;
 use App\Models\Pumping;
 use App\Models\User;
-use App\Packets\Pumping\PersistPumpingPacket;
+use App\Packets\User\PersistPumpingPacket;
 
 final class PumpingService implements PumpingServiceInterface
 {

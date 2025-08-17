@@ -7,8 +7,8 @@ namespace App\Services\User;
 use App\Contracts\User\UserSettingServiceInterface;
 use App\Models\User;
 use App\Models\UserSetting;
-use App\Packets\UserSettings\StoreUserSettingPacket;
-use App\Packets\UserSettings\UpdateUserSettingPacket;
+use App\Packets\User\StoreUserSettingPacket;
+use App\Packets\User\UpdateUserSettingPacket;
 
 final class UserSettingService implements UserSettingServiceInterface
 {

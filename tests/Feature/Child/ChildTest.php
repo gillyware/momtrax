@@ -54,7 +54,7 @@ test('children profiles can be updated', function () {
         ->subMinutes(fake()->numberBetween(0, 20))
         ->setSecond(0);
 
-    $this->put(route('children.update', ['child' => $child->uuid]), [
+    $this->put(route('children.settings.profile.update', ['child' => $child->uuid]), [
         'name' => $name = fake()->name(),
         'birth_date' => $birthDate->format('Y-m-d H:i'),
         'gender' => $gender = Gender::random()->value,
@@ -71,7 +71,7 @@ test('children profiles can be updated', function () {
 test('children can be deleted', function () {
     $child = Child::factory()->forUser($this->user)->create();
 
-    $this->delete(route('children.destroy', [
+    $this->delete(route('children.settings.profile.destroy', [
         'child' => $child->uuid,
     ]))->assertRedirect(route('children.index'));
 

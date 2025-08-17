@@ -6,7 +6,7 @@ namespace App\Contracts\User;
 
 use App\Models\Pumping;
 use App\Models\User;
-use App\Packets\Pumping\PersistPumpingPacket;
+use App\Packets\User\PersistPumpingPacket;
 use App\Services\User\PumpingService;
 use Illuminate\Container\Attributes\Bind;
 

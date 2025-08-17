@@ -6,7 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Contracts\User\UserServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Packets\Users\UpdateUserFeaturePacket;
+use App\Packets\User\UpdateUserFeaturePacket;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;

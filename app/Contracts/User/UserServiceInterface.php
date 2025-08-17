@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Contracts\User;
 
 use App\Models\User;
-use App\Packets\Users\StoreUserPacket;
-use App\Packets\Users\UpdateUserFeaturePacket;
-use App\Packets\Users\UpdateUserProfilePacket;
+use App\Packets\User\StoreUserPacket;
+use App\Packets\User\UpdateUserFeaturePacket;
+use App\Packets\User\UpdateUserProfilePacket;
 use App\Services\User\UserService;
 use Illuminate\Container\Attributes\Bind;
 

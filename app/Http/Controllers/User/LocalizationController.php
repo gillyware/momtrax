@@ -6,7 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Contracts\User\UserSettingServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Packets\UserSettings\UpdateLocalizationPacket;
+use App\Packets\User\UpdateLocalizationPacket;
 use Gillyware\Atlas\Facades\Atlas;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;

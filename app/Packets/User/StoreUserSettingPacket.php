@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Packets\UserSettings;
+namespace App\Packets\User;
 
 use Gillyware\Postal\Attributes\Rule;
+use Gillyware\Postal\Packet;
 
-final class UpdateLocalizationPacket extends UpdateUserSettingPacket
+final class StoreUserSettingPacket extends Packet
 {
     public function __construct(
         #[Rule(['required', 'timezone'])]
-        public readonly string $timezone
+        public readonly string $timezone,
     ) {}
 }

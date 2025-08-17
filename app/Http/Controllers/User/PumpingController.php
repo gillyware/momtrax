@@ -7,7 +7,7 @@ namespace App\Http\Controllers\User;
 use App\Contracts\User\PumpingServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Models\Pumping;
-use App\Packets\Pumping\PersistPumpingPacket;
+use App\Packets\User\PersistPumpingPacket;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;

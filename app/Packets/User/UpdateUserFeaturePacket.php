@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Packets\Users;
+namespace App\Packets\User;
 
 use App\Enums\MomTraxUserFeature;
 use Gillyware\Postal\Attributes\Field;

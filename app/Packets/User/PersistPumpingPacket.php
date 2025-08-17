@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Packets\Pumping;
+namespace App\Packets\User;
 
 use Carbon\Carbon;
 use Gillyware\Postal\Attributes\Field;
@@ -18,8 +18,8 @@ final class PersistPumpingPacket extends Packet
         #[Field('left_breast_amount'), Rule(['nullable', 'numeric', 'gte:0', 'required_with:right_breast_amount'])]
         public readonly int|float|null $leftBreastAmount,
         #[Field('right_breast_amount'), Rule(['nullable', 'numeric', 'gte:0', 'required_with:left_breast_amount'])]
-        public readonly int|float|null $rightBreastAmount,
-        #[Field('total_amount'), Rule(['required', 'numeric', 'gte:0'])]
+        public readonly ?int $rightBreastAmount,
+        #[Field('total_amount'), Rule(['required', 'integer', 'gte:0'])]
         public readonly int|float $totalAmount,
         #[Field('duration_in_minutes'), Rule(['required', 'integer', 'gte:0'])]
         public readonly int|float $durationInMinutes,

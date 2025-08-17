@@ -27,7 +27,7 @@ test('pumpings can be stored while preferring start time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20))->setSecond(0);
 
     $this->post(route('pumpings.store'), [
         'left_breast_amount' => $left,
@@ -46,8 +46,8 @@ test('pumpings can be stored while preferring start time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->copy()->addMinutes($duration)->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->toDateTimeString(),
+        'end_date_time' => $dateTime->copy()->addMinutes($duration)->toDateTimeString(),
     ]);
 });
 
@@ -57,7 +57,7 @@ test('pumpings can be stored while preferring end time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20))->setSecond(0);
 
     $this->post(route('pumpings.store'), [
         'left_breast_amount' => $left,
@@ -76,8 +76,8 @@ test('pumpings can be stored while preferring end time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->copy()->subMinutes($duration)->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->copy()->subMinutes($duration)->toDateTimeString(),
+        'end_date_time' => $dateTime->toDateTimeString(),
     ]);
 });
 
@@ -87,7 +87,7 @@ test('pumpings can be updated while preferring start time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20))->setSecond(0);
 
     $this->put(route('pumpings.update', [
         'pumping' => $pumping->id,
@@ -108,8 +108,8 @@ test('pumpings can be updated while preferring start time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->copy()->addMinutes($duration)->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->toDateTimeString(),
+        'end_date_time' => $dateTime->copy()->addMinutes($duration)->toDateTimeString(),
     ]);
 });
 
@@ -121,7 +121,7 @@ test('pumpings can be updated while preferring end time', function () {
     [$left, $right] = [fake()->numberBetween(0, 200), fake()->numberBetween(0, 200)];
 
     $duration = fake()->numberBetween(0, 60);
-    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20));
+    $dateTime = now()->addMinutes(fake()->numberBetween(0, 20))->setSecond(0);
 
     $this->put(route('pumpings.update', [
         'pumping' => $pumping->id,
@@ -142,8 +142,8 @@ test('pumpings can be updated while preferring end time', function () {
         'total_amount' => $left + $right,
         'duration_in_minutes' => $duration,
         'notes' => $notes,
-        'start_date_time' => $dateTime->copy()->subMinutes($duration)->setSecond(0)->toDateTimeString(),
-        'end_date_time' => $dateTime->setSecond(0)->toDateTimeString(),
+        'start_date_time' => $dateTime->copy()->subMinutes($duration)->toDateTimeString(),
+        'end_date_time' => $dateTime->toDateTimeString(),
     ]);
 });
 

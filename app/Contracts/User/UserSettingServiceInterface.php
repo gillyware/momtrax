@@ -6,8 +6,8 @@ namespace App\Contracts\User;
 
 use App\Models\User;
 use App\Models\UserSetting;
-use App\Packets\UserSettings\StoreUserSettingPacket;
-use App\Packets\UserSettings\UpdateUserSettingPacket;
+use App\Packets\User\StoreUserSettingPacket;
+use App\Packets\User\UpdateUserSettingPacket;
 use App\Services\User\UserSettingService;
 use Illuminate\Container\Attributes\Bind;
 

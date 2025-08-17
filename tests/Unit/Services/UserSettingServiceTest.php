@@ -7,8 +7,8 @@ use App\Enums\HeightUnit;
 use App\Enums\MilkUnit;
 use App\Enums\WeightUnit;
 use App\Models\User;
-use App\Packets\UserSettings\UpdateLocalizationPacket;
-use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
+use App\Packets\User\UpdateLocalizationPacket;
+use App\Packets\User\UpdateUnitPreferencesPacket;
 
 beforeEach(function () {
     $this->userSettingService = resolve(UserSettingServiceInterface::class);

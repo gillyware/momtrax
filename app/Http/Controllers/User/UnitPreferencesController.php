@@ -6,7 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Contracts\User\UserSettingServiceInterface;
 use App\Http\Controllers\Controller;
-use App\Packets\UserSettings\UpdateUnitPreferencesPacket;
+use App\Packets\User\UpdateUnitPreferencesPacket;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
