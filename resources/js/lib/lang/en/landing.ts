@@ -40,7 +40,7 @@ const landingText = {
         },
         premiumTiles: {
             profileSharingText: {
-                title: 'Profile Sharing',
+                title: 'Child Sharing',
                 description: 'Share a child’s profile to let someone see, add, and edit logs to lighten your load. Revoke access at any time.',
             },
             notebookText: {
